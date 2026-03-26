@@ -1,0 +1,97 @@
+<section class="w-full bg-surface px-6 py-20 md:px-16">
+  <div class="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="lx-fr-tag">
+        <span class="material-symbols-outlined" style="font-size:13px;">speed</span>FR-13
+      </div>
+      <h2 class="font-headline text-4xl lg:text-5xl text-primary-container leading-tight mb-5">
+        Urgent Cases Rise.<br/><span class="italic text-secondary">Automatically.</span>
+      </h2>
+      <p class="text-on-surface-variant text-base leading-relaxed mb-8 max-w-md">
+        A dynamic score is calculated for every case based on type, urgency, SOS status, and deadline proximity — ensuring critical cases are never buried.
+      </p>
+      <div class="flex items-center gap-6 p-6 rounded-2xl border border-outline-variant/20 bg-surface-container-low">
+        <div class="lx-ring">
+          <svg width="110" height="110" viewBox="0 0 110 110">
+            <circle cx="55" cy="55" r="46" fill="none" stroke="#e1e3e4" stroke-width="7"/>
+            <circle cx="55" cy="55" r="46" fill="none" stroke="#002147" stroke-width="7"
+              stroke-dasharray="289" stroke-dashoffset="23" stroke-linecap="round"/>
+          </svg>
+          <span class="lx-ring-val">92</span>
+          <span class="lx-ring-lbl">Score</span>
+        </div>
+        <div>
+          <div class="font-bold text-primary-container text-sm mb-1">SOS Case — Criminal</div>
+          <div class="text-sm text-on-surface-variant">Hearing in <strong>2 days</strong></div>
+          <div class="text-xs text-on-surface-variant mt-3 space-y-1">
+            <div>Base (criminal) &nbsp;&nbsp;&nbsp;+40</div>
+            <div>SOS flag &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+50</div>
+            <div>Deadline &#x2264; 3 days &nbsp;+30</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div>
+      <div class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-5">Live Priority Queue</div>
+
+      <div class="lx-pri-row">
+        <div class="lx-pri-icon" style="background:#ffdad6;">
+          <span class="material-symbols-outlined" style="font-size:18px;color:#93000a;">priority_high</span>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-sm font-bold text-on-surface">Hossain — Criminal</span>
+            <span class="lx-badge critical">92 pts</span>
+          </div>
+          <div class="lx-bar-wrap"><div class="lx-bar" style="width:92%;background:#ba1a1a;"></div></div>
+        </div>
+      </div>
+
+      <div class="lx-pri-row">
+        <div class="lx-pri-icon" style="background:#fcd353;">
+          <span class="material-symbols-outlined" style="font-size:18px;color:#241a00;">warning</span>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-sm font-bold text-on-surface">Rahman — Domestic</span>
+            <span class="lx-badge high">68 pts</span>
+          </div>
+          <div class="lx-bar-wrap"><div class="lx-bar" style="width:68%;background:#745b00;"></div></div>
+        </div>
+      </div>
+
+      <div class="lx-pri-row">
+        <div class="lx-pri-icon" style="background:#d6e3ff;">
+          <span class="material-symbols-outlined" style="font-size:18px;color:#001b3d;">gavel</span>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-sm font-bold text-on-surface">Smita — Property</span>
+            <span class="lx-badge medium">45 pts</span>
+          </div>
+          <div class="lx-bar-wrap"><div class="lx-bar" style="width:45%;background:#465f88;"></div></div>
+        </div>
+      </div>
+
+      <div class="lx-pri-row">
+        <div class="lx-pri-icon" style="background:#e1e3e4;">
+          <span class="material-symbols-outlined" style="font-size:18px;color:#74777f;">description</span>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-sm font-bold text-on-surface">Karim — Civil</span>
+            <span class="lx-badge low">22 pts</span>
+          </div>
+          <div class="lx-bar-wrap"><div class="lx-bar" style="width:22%;background:#74777f;"></div></div>
+        </div>
+      </div>
+
+      <div class="mt-5 p-4 rounded-xl bg-surface-container-low border border-outline-variant/20 text-xs text-on-surface-variant leading-relaxed">
+        <strong>Scoring factors:</strong> Case type urgency · SOS flag (+50) · Hearing &#x2264;3 days (+30) · &#x2264;7 days (+20) · &#x2264;14 days (+10)
+      </div>
+    </div>
+
+  </div>
+</section>
