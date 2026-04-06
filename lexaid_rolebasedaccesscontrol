@@ -1,0 +1,64 @@
+<section class="w-full px-6 py-20 md:px-16" style="background:#000a1e;">
+  <div class="max-w-screen-xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <div class="lx-fr-tag" style="margin:0 auto 14px; width:fit-content; background:rgba(255,255,255,.12); color:#fff;">
+        <span class="material-symbols-outlined" style="font-size:13px;">shield_lock</span>FR-18
+      </div>
+      <h2 class="font-headline text-4xl lg:text-5xl text-white mb-4">
+        Access That Knows <span class="italic" style="color:#fcd353;">Its Place.</span>
+      </h2>
+      <p class="text-base max-w-xl mx-auto leading-relaxed" style="color:rgba(255,255,255,.6);">
+        Three distinct roles. Zero permission bleed. Every feature is locked to exactly who needs it — no more, no less.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="lx-role-card client">
+        <div class="lx-role-badge">Client</div>
+        <h3 class="font-headline text-xl text-primary-container mb-2">The Litigant</h3>
+        <p class="text-on-surface-variant text-sm">Access limited to their own cases and communications.</p>
+        <ul class="lx-perm-list">
+          <li><span>&#x2705;</span> Submit &amp; track own cases</li>
+          <li><span>&#x2705;</span> Upload evidence</li>
+          <li><span>&#x2705;</span> In-app messaging</li>
+          <li><span>&#x2705;</span> Book appointments</li>
+          <li><span>&#x1F6AB;</span> View other clients' data</li>
+          <li><span>&#x1F6AB;</span> Access analytics</li>
+        </ul>
+      </div>
+
+      <div class="lx-role-card lawyer" style="transform:scale(1.03);">
+        <div class="lx-role-badge">Lawyer</div>
+        <h3 class="font-headline text-xl text-white mb-2">The Practitioner</h3>
+        <p class="text-sm" style="color:rgba(255,255,255,.6);">Full access to assigned cases only — no cross-case visibility.</p>
+        <ul class="lx-perm-list">
+          <li><span>&#x2705;</span> Manage assigned cases</li>
+          <li><span>&#x2705;</span> Record hearing notes</li>
+          <li><span>&#x2705;</span> Log billable hours</li>
+          <li><span>&#x2705;</span> Reply to forum queries</li>
+          <li><span>&#x2705;</span> Generate legal documents</li>
+          <li><span>&#x1F6AB;</span> Access admin panel</li>
+        </ul>
+      </div>
+
+      <div class="lx-role-card admin">
+        <div class="lx-role-badge">Administrator</div>
+        <h3 class="font-headline text-xl text-white mb-2">The Gatekeeper</h3>
+        <p class="text-sm" style="color:rgba(255,255,255,.6);">System-wide authority with full audit and oversight powers.</p>
+        <ul class="lx-perm-list">
+          <li><span>&#x2705;</span> All permissions above</li>
+          <li><span>&#x2705;</span> Verify lawyer accounts</li>
+          <li><span>&#x2705;</span> View full audit logs</li>
+          <li><span>&#x2705;</span> Manage grants &amp; funding</li>
+          <li><span>&#x2705;</span> Performance analytics</li>
+          <li><span>&#x2705;</span> Bulk notifications</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>

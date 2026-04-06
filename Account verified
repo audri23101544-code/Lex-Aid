@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+
+class AccountVerified extends Notification implements ShouldQueue
+{
+    use Queueable;
+
+    public function via(): array { return ['mail']; }
+
+    public function toMail($notifiable): MailMessage
+    {
+        return (new MailMessage)
+            ->subject('LexAid — Your Account Has Been Verified')
+            ->greeting("Welcome, {$notifiable->name}!")
+            ->line('Your lawyer account has been verified by our admin team.')
+            ->line('You can now log in and begin accepting cases.')
+            ->action('Log In to LexAid', url('/login'));
+    }
+}
