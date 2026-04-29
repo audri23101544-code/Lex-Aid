@@ -10,30 +10,22 @@ class SosController extends Controller
 {
     public function create()
     {
-        if (!Session::has('user')) {
-            return redirect('/login');
-        }
+        if (!Session::has('user')) return redirect('/login');
 
         $user = Session::get('user');
 
-        if ($user->role != 'client') {
-            return redirect('/login');
-        }
+        if ($user->role != 'client') return redirect('/login');
 
         return view('sos_create', compact('user'));
     }
 
     public function store(Request $request)
     {
-        if (!Session::has('user')) {
-            return redirect('/login');
-        }
+        if (!Session::has('user')) return redirect('/login');
 
         $user = Session::get('user');
 
-        if ($user->role != 'client') {
-            return redirect('/login');
-        }
+        if ($user->role != 'client') return redirect('/login');
 
         $request->validate([
             'emergency_type' => 'required',
@@ -53,39 +45,36 @@ class SosController extends Controller
             'status' => 'pending'
         ]);
 
-        return redirect('/client/sos')->with('success', 'Emergency SOS request submitted successfully.');
+        return redirect('/client')->with('success', 'SOS submitted successfully.');
     }
 
     public function adminIndex()
     {
-        if (!Session::has('user')) {
-            return redirect('/login');
-        }
+        if (!Session::has('user')) return redirect('/login');
 
         $user = Session::get('user');
 
-        if ($user->role != 'admin') {
-            return redirect('/login');
-        }
+        if ($user->role != 'admin') return redirect('/login');
 
-        $sosRequests = DB::table('sos_requests')
-            ->latest('id')
-            ->get();
+        $sosRequests = DB::table('sos_requests')->latest('id')->get();
 
         return view('admin_sos', compact('user', 'sosRequests'));
     }
 
+    // 🔥 UPDATED FUNCTION (ADMIN + LAWYER)
     public function updateStatus(Request $request, $id)
     {
-        if (!Session::has('user')) {
-            return redirect('/login');
-        }
+        if (!Session::has('user')) return redirect('/login');
 
         $user = Session::get('user');
 
-        if ($user->role != 'admin') {
+        if ($user->role != 'admin' && $user->role != 'lawyer') {
             return redirect('/login');
         }
+
+        $request->validate([
+            'status' => 'required|in:pending,reviewing,resolved'
+        ]);
 
         DB::table('sos_requests')
             ->where('id', $id)
@@ -93,6 +82,6 @@ class SosController extends Controller
                 'status' => $request->status
             ]);
 
-        return redirect('/admin/sos')->with('success', 'SOS request status updated.');
+        return back()->with('success', 'SOS updated');
     }
 }

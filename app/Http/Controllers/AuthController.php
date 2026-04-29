@@ -13,25 +13,42 @@ class AuthController extends Controller
     {
         return view('login');
     }
+
     public function adminDashboard()
-{
-    if (!Session::has('user')) {
-        return redirect('/login');
+    {
+        if (!Session::has('user')) {
+            return redirect('/login');
+        }
+
+        $user = Session::get('user');
+
+        if ($user->role != 'admin') {
+            return redirect('/login');
+        }
+
+        $totalCases = DB::table('cases')->count();
+        $totalUsers = DB::table('users')->count();
+        $totalLawyers = DB::table('users')->where('role', 'lawyer')->count();
+        $recentCases = DB::table('cases')->latest('id')->take(5)->get();
+        $allCases = DB::table('cases')->latest('id')->get();
+
+        $sosRequests = DB::table('sos_requests')->latest('id')->take(5)->get();
+        $totalSos = DB::table('sos_requests')->count();
+        $pendingSos = DB::table('sos_requests')->where('status', 'pending')->count();
+
+        return view('admin_dashboard', compact(
+            'user',
+            'totalCases',
+            'totalUsers',
+            'totalLawyers',
+            'recentCases',
+            'allCases',
+            'sosRequests',
+            'totalSos',
+            'pendingSos'
+        ));
     }
 
-    $user = Session::get('user');
-
-    if ($user->role != 'admin') {
-        return redirect('/login');
-    }
-
-    $totalCases = DB::table('cases')->count();
-    $totalUsers = DB::table('users')->count();
-    $totalLawyers = DB::table('users')->where('role', 'lawyer')->count();
-    $recentCases = DB::table('cases')->latest('id')->take(5)->get();
-
-    return view('admin_dashboard', compact('user', 'totalCases', 'totalUsers', 'totalLawyers', 'recentCases'));
-}
     public function login(Request $request)
     {
         $request->validate([
@@ -43,6 +60,7 @@ class AuthController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)) {
             Session::put('user', $user);
+
             if ($user->role == 'admin') {
                 return redirect('/admin');
             } elseif ($user->role == 'lawyer') {
@@ -50,14 +68,107 @@ class AuthController extends Controller
             } else {
                 return redirect('/client');
             }
-                        
-
-
-
         }
 
         return back()->with('error', 'Invalid email or password');
     }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'role' => 'required'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role
+        ]);
+
+        return redirect('/login')->with('success', 'Registration successful! Please login.');
+    }
+
+    public function clientDashboard()
+    {
+        if (!Session::has('user')) {
+            return redirect('/login');
+        }
+
+        $user = Session::get('user');
+
+        if ($user->role != 'client') {
+            return redirect('/login');
+        }
+
+        $yourCases = DB::table('cases')
+            ->where('client_id', $user->id)
+            ->latest('id')
+            ->get();
+
+        session(['user_name' => $user->name]);
+
+        return view('client_dashboard', compact('user', 'yourCases'));
+    }
+
+    public function lawyerDashboard()
+{
+    if (!Session::has('user')) {
+        return redirect('/login');
+    }
+
+    $user = Session::get('user');
+
+    if ($user->role != 'lawyer') {
+        return redirect('/login');
+    }
+
+    $allCases = DB::table('cases')
+        ->where('lawyer_id', $user->id)
+        ->latest('id')
+        ->get();
+
+    $totalCases = $allCases->count();
+
+    $openCases = DB::table('cases')
+        ->where('lawyer_id', $user->id)
+        ->where('status', 'open')
+        ->count();
+
+    $inProgressCases = DB::table('cases')
+        ->where('lawyer_id', $user->id)
+        ->where('status', 'in_progress')
+        ->count();
+
+    $closedCases = DB::table('cases')
+        ->where('lawyer_id', $user->id)
+        ->where('status', 'closed')
+        ->count();
+
+    $sosRequests = DB::table('sos_requests')
+        ->whereIn('status', ['pending', 'reviewing'])
+        ->latest('id')
+        ->take(5)
+        ->get();
+
+    $totalSos = DB::table('sos_requests')
+        ->whereIn('status', ['pending', 'reviewing'])
+        ->count();
+
+    return view('lawyer_dashboard', compact(
+        'user',
+        'allCases',
+        'totalCases',
+        'openCases',
+        'inProgressCases',
+        'closedCases',
+        'sosRequests',
+        'totalSos'
+    ));
+}
 
     public function dashboard()
     {
