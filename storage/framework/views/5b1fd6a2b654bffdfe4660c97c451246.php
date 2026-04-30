@@ -100,7 +100,31 @@
                 <p class="text-green-600 text-sm mt-4">Resolved</p>
             </div>
         </div>
+        <!-- Admin Notifications -->
+<section class="bg-white rounded-2xl shadow p-6 mb-8">
+    <div class="flex justify-between items-center mb-5">
+        <div>
+            <h3 class="text-2xl font-bold">🔔 Admin Notifications</h3>
+            <p class="text-gray-500">Messages sent by admin</p>
+        </div>
+    </div>
 
+    <?php if(isset($notifications) && $notifications->count() > 0): ?>
+        <div class="space-y-4">
+            <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="border rounded-xl p-4 bg-blue-50">
+                    <h4 class="font-bold text-[#002147]"><?php echo e($notification->subject); ?></h4>
+                    <p class="text-sm text-gray-600 mt-1"><?php echo e($notification->message); ?></p>
+                    <p class="text-xs text-gray-400 mt-2"><?php echo e($notification->created_at); ?></p>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    <?php else: ?>
+        <div class="bg-gray-100 p-4 rounded text-gray-600">
+            No notifications from admin yet.
+        </div>
+    <?php endif; ?>
+</section>
         <!-- Middle Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
 

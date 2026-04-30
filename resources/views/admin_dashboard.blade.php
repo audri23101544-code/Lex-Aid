@@ -106,10 +106,10 @@
                 <span class="text-green-700 font-bold">Open Funding →</span>
             </a>
 
-            <a href="/admin/funding" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+            <a href="/admin/notifications" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
                 <h3 class="text-xl font-bold text-purple-700 mb-2">Bulk Email</h3>
                 <p class="text-gray-600 mb-4">Send automated updates and reminders.</p>
-                <span class="text-purple-700 font-bold">Open Funding →</span>
+                <span class="text-purple-700 font-bold">open Notifications→</span>
             </a>
 
         </div>
