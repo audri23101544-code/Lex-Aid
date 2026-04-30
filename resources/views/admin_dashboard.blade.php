@@ -29,11 +29,11 @@
                 Performance Dashboard
             </a>
 
-            <a href="#" class="block hover:bg-white/10 px-4 py-3 rounded">
+            <a href="/admin/funding" class="block hover:bg-white/10 px-4 py-3 rounded">
                 Grant & Funding Tracker
             </a>
 
-            <a href="#" class="block hover:bg-white/10 px-4 py-3 rounded">
+            <a href="/admin/funding" class="block hover:bg-white/10 px-4 py-3 rounded">
                 Bulk Email Notifications
             </a>
 
@@ -100,16 +100,16 @@
                 <span class="text-blue-700 font-bold">View Analytics →</span>
             </a>
 
-            <a href="#" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+            <a href="/admin/funding" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
                 <h3 class="text-xl font-bold text-green-700 mb-2">Grant & Funding</h3>
                 <p class="text-gray-600 mb-4">Monitor funding sources and case allocations.</p>
-                <span class="text-green-700 font-bold">Coming Next →</span>
+                <span class="text-green-700 font-bold">Open Funding →</span>
             </a>
 
-            <a href="#" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+            <a href="/admin/funding" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
                 <h3 class="text-xl font-bold text-purple-700 mb-2">Bulk Email</h3>
                 <p class="text-gray-600 mb-4">Send automated updates and reminders.</p>
-                <span class="text-purple-700 font-bold">Coming Next →</span>
+                <span class="text-purple-700 font-bold">Open Funding →</span>
             </a>
 
         </div>

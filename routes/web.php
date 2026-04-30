@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PerformanceController;
+use App\Http\Controllers\FundingController;
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -48,3 +49,6 @@ Route::get('/admin/sos', [SosController::class, 'adminIndex']);
 Route::post('/admin/sos/update/{id}', [SosController::class, 'updateStatus']);
 Route::get('/admin/performance', [PerformanceController::class, 'index']);
 Route::post('/sos/update/{id}', [SosController::class, 'updateStatus']);
+Route::get('/admin/funding', [FundingController::class, 'index']);
+Route::post('/admin/funding/source', [FundingController::class, 'storeSource']);
+Route::post('/admin/funding/allocate', [FundingController::class, 'allocate']);
