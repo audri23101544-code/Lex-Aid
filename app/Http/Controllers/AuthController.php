@@ -94,10 +94,17 @@ class AuthController extends Controller
 
     public function clientDashboard()
     {
+ 
+
+
+
         if (!Session::has('user')) {
             return redirect('/login');
         }
-
+        $notifications = DB::table('user_notifications')
+            ->where('user_id', $user->id)
+            ->latest('id')
+            ->get();
         $user = Session::get('user');
 
         if ($user->role != 'client') {
@@ -111,7 +118,7 @@ class AuthController extends Controller
 
         session(['user_name' => $user->name]);
 
-        return view('client_dashboard', compact('user', 'yourCases'));
+        return view('client_dashboard', compact('user', 'yourCases', 'notifications'));
     }
 
     public function lawyerDashboard()
@@ -125,7 +132,10 @@ class AuthController extends Controller
     if ($user->role != 'lawyer') {
         return redirect('/login');
     }
-
+    $notifications = DB::table('user_notifications')
+        ->where('user_id', $user->id)
+        ->latest('id')
+        ->get();
     $allCases = DB::table('cases')
         ->where('lawyer_id', $user->id)
         ->latest('id')
@@ -159,14 +169,15 @@ class AuthController extends Controller
         ->count();
 
     return view('lawyer_dashboard', compact(
-        'user',
-        'allCases',
-        'totalCases',
-        'openCases',
-        'inProgressCases',
-        'closedCases',
-        'sosRequests',
-        'totalSos'
+    'user',
+    'allCases',
+    'totalCases',
+    'openCases',
+    'inProgressCases',
+    'closedCases',
+    'sosRequests',
+    'totalSos',
+    'notifications'
     ));
 }
 

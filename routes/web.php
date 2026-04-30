@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\FundingController;
+use App\Http\Controllers\NotificationController;
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -52,3 +53,5 @@ Route::post('/sos/update/{id}', [SosController::class, 'updateStatus']);
 Route::get('/admin/funding', [FundingController::class, 'index']);
 Route::post('/admin/funding/source', [FundingController::class, 'storeSource']);
 Route::post('/admin/funding/allocate', [FundingController::class, 'allocate']);
+Route::get('/admin/notifications', [NotificationController::class, 'index']);
+Route::post('/admin/notifications/send', [NotificationController::class, 'send']);
