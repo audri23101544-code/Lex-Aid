@@ -8,7 +8,7 @@ use App\Http\Controllers\FundingController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PriorityController;
-
+use App\Http\Controllers\ForumController;
 
 
 
@@ -50,6 +50,9 @@ use App\Http\Controllers\SosController;
 // Client SOS
 Route::get('/client/sos', [SosController::class, 'create']);
 Route::post('/client/sos', [SosController::class, 'store']);
+
+Route::get('/forum', [ForumController::class, 'index']);
+Route::post('/forum/post', [ForumController::class, 'store']);
 
 use App\Http\Controllers\EvidenceController;
 
