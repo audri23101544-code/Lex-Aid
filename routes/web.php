@@ -51,6 +51,11 @@ use App\Http\Controllers\SosController;
 Route::get('/client/sos', [SosController::class, 'create']);
 Route::post('/client/sos', [SosController::class, 'store']);
 
+use App\Http\Controllers\EvidenceController;
+
+Route::get('/client/evidence', [EvidenceController::class, 'index']);
+Route::post('/client/evidence/upload', [EvidenceController::class, 'upload']);
+
 // Admin SOS
 Route::get('/admin/sos', [SosController::class, 'adminIndex']);
 Route::post('/admin/sos/update/{id}', [SosController::class, 'updateStatus']);
