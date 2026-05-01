@@ -101,11 +101,13 @@ class AuthController extends Controller
         if (!Session::has('user')) {
             return redirect('/login');
         }
+
+        $user = Session::get('user');
+
         $notifications = DB::table('user_notifications')
             ->where('user_id', $user->id)
             ->latest('id')
             ->get();
-        $user = Session::get('user');
 
         if ($user->role != 'client') {
             return redirect('/login');
