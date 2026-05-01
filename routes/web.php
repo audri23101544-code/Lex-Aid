@@ -7,7 +7,7 @@ use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\FundingController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AppointmentController;
-
+use App\Http\Controllers\PriorityController;
 
 
 
@@ -42,7 +42,7 @@ use App\Http\Controllers\CaseController;
 Route::get('/case/create', [CaseController::class, 'create']);
 Route::post('/case/store', [CaseController::class, 'store']);
 Route::get('/cases', [CaseController::class, 'index']);
-
+Route::get('/submit-case', [CaseController::class, 'create']);
 Route::post('/register', [AuthController::class, 'register']);
 
 use App\Http\Controllers\SosController;
@@ -67,3 +67,7 @@ Route::post('/client/appointments', [AppointmentController::class, 'clientStore'
 
 Route::get('/lawyer/appointments', [AppointmentController::class, 'lawyerIndex']);
 Route::post('/lawyer/appointments/update/{id}', [AppointmentController::class, 'updateStatus']);
+// Case Priority Scoring System
+Route::get('/admin/priority', [PriorityController::class, 'index']);
+Route::post('/admin/priority/update/{id}', [PriorityController::class, 'updateOne']);
+Route::post('/admin/priority/update-all', [PriorityController::class, 'updateAll']);
