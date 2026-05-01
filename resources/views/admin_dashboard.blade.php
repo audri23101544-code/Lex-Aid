@@ -21,6 +21,10 @@
                 Dashboard
             </a>
 
+            <a href="/forum" class="block px-5 py-4 rounded-xl hover:bg-white/10">
+                Legal Forum
+            </a>
+
             <a href="/admin/sos" class="block hover:bg-white/10 px-4 py-3 rounded">
                 Emergency SOS
             </a>

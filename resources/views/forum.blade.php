@@ -32,6 +32,12 @@
         </div>
     @endif
 
+    @if(session('error'))
+        <div class="bg-red-100 text-red-700 p-4 rounded mb-6">
+            {{ session('error') }}
+        </div>
+    @endif
+
     @if($errors->any())
         <div class="bg-red-100 text-red-700 p-4 rounded mb-6">
             <ul class="list-disc ml-5">
@@ -108,6 +114,36 @@
                             <p class="text-slate-700 mt-4 leading-relaxed">
                                 {{ $q->question }}
                             </p>
+
+                            <div class="mt-5 border-t pt-4">
+                                <h5 class="font-bold text-[#002147] mb-3">Replies</h5>
+
+                                @if(isset($replies[$q->id]) && $replies[$q->id]->count() > 0)
+                                    <div class="space-y-3 mb-4">
+                                        @foreach($replies[$q->id] as $reply)
+                                            <div class="bg-blue-50 border border-blue-100 rounded-lg p-4">
+                                                <p class="text-sm text-slate-700">{{ $reply->reply }}</p>
+                                                <p class="text-xs text-slate-500 mt-2">
+                                                    Answered by Advocate {{ $reply->lawyer_name ?? 'Lawyer' }}
+                                                    · {{ $reply->created_at }}
+                                                </p>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <p class="text-sm text-slate-500 mb-4">No replies yet.</p>
+                                @endif
+
+                                @if(isset($user) && ($user->role === 'lawyer' || $user->role === 'admin'))
+                                    <form method="POST" action="/forum/reply/{{ $q->id }}" class="mt-4">
+                                        @csrf
+                                        <textarea name="reply" rows="3" class="w-full border rounded p-3" placeholder="Write your legal reply..." required></textarea>
+                                        <button type="submit" class="mt-2 bg-[#002147] text-white px-4 py-2 rounded font-bold hover:bg-[#003366]">
+                                            Post Reply
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
                         </div>
                     @endforeach
                 </div>

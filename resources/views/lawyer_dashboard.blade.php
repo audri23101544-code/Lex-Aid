@@ -39,6 +39,11 @@
                 Documents
             </a>
 
+            <a href="/forum" class="block px-5 py-4 rounded-xl hover:bg-white/10">
+                Legal Forum
+            </a>
+
+
             <a href="#" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Messages
             </a>
