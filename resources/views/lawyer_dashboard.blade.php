@@ -35,7 +35,7 @@
                 Calendar
             </a>
 
-            <a href="#" class="block px-5 py-4 rounded-xl hover:bg-white/10">
+            <a href="/lawyer/evidence" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Documents
             </a>
 
