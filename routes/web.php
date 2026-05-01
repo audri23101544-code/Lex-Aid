@@ -53,6 +53,7 @@ Route::post('/client/sos', [SosController::class, 'store']);
 
 Route::get('/forum', [ForumController::class, 'index']);
 Route::post('/forum/post', [ForumController::class, 'store']);
+Route::post('/forum/reply/{questionId}', [ForumController::class, 'reply']);
 
 use App\Http\Controllers\EvidenceController;
 
