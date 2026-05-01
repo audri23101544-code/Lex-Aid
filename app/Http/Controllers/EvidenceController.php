@@ -83,4 +83,33 @@ class EvidenceController extends Controller
 
         return redirect('/client/evidence')->with('success', 'Evidence uploaded successfully.');
     }
+
+    public function lawyerIndex()
+    {
+        if (!Session::has('user')) {
+            return redirect('/login')->with('error', 'Please login first.');
+        }
+
+        $user = Session::get('user');
+
+        if ($user->role !== 'lawyer') {
+            return redirect('/dashboard')->with('error', 'Only lawyers can access this page.');
+        }
+
+        $documents = DB::table('documents')
+            ->join('cases', 'documents.case_id', '=', 'cases.id')
+            ->join('users as clients', 'cases.client_id', '=', 'clients.id')
+            ->where('cases.lawyer_id', $user->id)
+            ->select(
+                'documents.*',
+                'cases.title as case_title',
+                'cases.case_type',
+                'cases.status as case_status',
+                'clients.name as client_name'
+            )
+            ->orderBy('documents.uploaded_at', 'desc')
+            ->get();
+
+        return view('lawyer_evidence', compact('documents'));
+    }
 }

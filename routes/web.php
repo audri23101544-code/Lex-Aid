@@ -55,6 +55,7 @@ use App\Http\Controllers\EvidenceController;
 
 Route::get('/client/evidence', [EvidenceController::class, 'index']);
 Route::post('/client/evidence/upload', [EvidenceController::class, 'upload']);
+Route::get('/lawyer/evidence', [EvidenceController::class, 'lawyerIndex']);
 
 // Admin SOS
 Route::get('/admin/sos', [SosController::class, 'adminIndex']);
