@@ -6,6 +6,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\FundingController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AppointmentController;
+
+
+
+
+
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -55,3 +61,9 @@ Route::post('/admin/funding/source', [FundingController::class, 'storeSource']);
 Route::post('/admin/funding/allocate', [FundingController::class, 'allocate']);
 Route::get('/admin/notifications', [NotificationController::class, 'index']);
 Route::post('/admin/notifications/send', [NotificationController::class, 'send']);
+// Appointment Booking & Scheduling
+Route::get('/client/appointments', [AppointmentController::class, 'clientCreate']);
+Route::post('/client/appointments', [AppointmentController::class, 'clientStore']);
+
+Route::get('/lawyer/appointments', [AppointmentController::class, 'lawyerIndex']);
+Route::post('/lawyer/appointments/update/{id}', [AppointmentController::class, 'updateStatus']);

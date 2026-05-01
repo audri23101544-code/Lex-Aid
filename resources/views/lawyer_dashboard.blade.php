@@ -31,7 +31,7 @@
                 <span class="bg-red-500 text-white rounded-full px-3 py-1 text-sm">{{ $totalSos ?? 0 }}</span>
             </a>
 
-            <a href="#" class="block px-5 py-4 rounded-xl hover:bg-white/10">
+            <a href="/lawyer/appointments" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Calendar
             </a>
 
