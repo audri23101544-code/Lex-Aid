@@ -31,7 +31,7 @@
                 📅 Book Appointment
             </a>
 
-            <a href="#" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
+            <a href="/client/evidence" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
                 📄 Evidence
             </a>
 
@@ -71,7 +71,7 @@
             <nav class="hidden md:flex gap-8 text-sm font-semibold">
                 <a href="/client" class="text-yellow-300 border-b-2 border-yellow-300 pb-2">Overview</a>
                 <a href="#cases" class="hover:text-yellow-300">My Cases</a>
-                <a href="#" class="hover:text-yellow-300">Evidence</a>
+                <a href="/client/evidence" class="hover:text-yellow-300">Evidence</a>
                 <a href="#" class="hover:text-yellow-300">Legal Forum</a>
                 <a href="#notifications" class="hover:text-yellow-300">Notifications</a>
             </nav>
@@ -313,7 +313,7 @@
                         📅<br>Book Appointment
                     </a>
 
-                    <a href="#" class="bg-purple-50 p-5 rounded-xl text-center font-bold hover:bg-purple-100">
+                    <a href="/client/evidence" class="bg-purple-50 p-5 rounded-xl text-center font-bold hover:bg-purple-100">
                         ☁️<br>Upload Evidence
                     </a>
 
