@@ -92,7 +92,7 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Registration successful! Please login.');
     }
 
-    public function clientDashboard()
+public function clientDashboard()
 {
     if (!Session::has('user')) {
         return redirect('/login');
