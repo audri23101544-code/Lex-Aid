@@ -37,11 +37,15 @@
                 Grant & Funding Tracker
             </a>
 
-            <a href="/admin/funding" class="block hover:bg-white/10 px-4 py-3 rounded">
+            <a href="/admin/notifications" class="block hover:bg-white/10 px-4 py-3 rounded">
                 Bulk Email Notifications
             </a>
 
-            <a href="/cases" class="block hover:bg-white/10 px-4 py-3 rounded">
+            <a href="/admin/payments" class="block hover:bg-white/10 px-4 py-3 rounded">
+                Payment Monitoring
+            </a>
+
+            <a href="/admin/cases" class="block hover:bg-white/10 px-4 py-3 rounded">
                 Case Files
             </a>
 
@@ -97,13 +101,12 @@
                 <p class="text-gray-600 mb-4">View and manage urgent legal requests.</p>
                 <span class="text-red-600 font-bold">Open SOS →</span>
             </a>
+
             <a href="/admin/means-tests" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
                 <h3 class="text-xl font-bold text-yellow-700 mb-2">Means Test Review</h3>
                 <p class="text-gray-600 mb-4">Review client financial eligibility results.</p>
                 <span class="text-yellow-700 font-bold">Open Means Tests →</span>
             </a>
-
-
 
             <a href="/admin/performance" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
                 <h3 class="text-xl font-bold text-blue-700 mb-2">Performance Dashboard</h3>
@@ -120,7 +123,13 @@
             <a href="/admin/notifications" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
                 <h3 class="text-xl font-bold text-purple-700 mb-2">Bulk Email</h3>
                 <p class="text-gray-600 mb-4">Send automated updates and reminders.</p>
-                <span class="text-purple-700 font-bold">open Notifications→</span>
+                <span class="text-purple-700 font-bold">Open Notifications →</span>
+            </a>
+
+            <a href="/admin/payments" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h3 class="text-xl font-bold text-pink-700 mb-2">Payment Monitoring</h3>
+                <p class="text-gray-600 mb-4">Track case fees, pending payments, and completed bKash payments.</p>
+                <span class="text-pink-700 font-bold">Open Payments →</span>
             </a>
 
         </div>
