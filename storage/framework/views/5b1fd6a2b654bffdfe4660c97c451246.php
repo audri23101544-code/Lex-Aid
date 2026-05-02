@@ -31,13 +31,18 @@
                 <span class="bg-red-500 text-white rounded-full px-3 py-1 text-sm"><?php echo e($totalSos ?? 0); ?></span>
             </a>
 
-            <a href="#" class="block px-5 py-4 rounded-xl hover:bg-white/10">
+            <a href="/lawyer/appointments" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Calendar
             </a>
 
-            <a href="#" class="block px-5 py-4 rounded-xl hover:bg-white/10">
+            <a href="/lawyer/evidence" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Documents
             </a>
+
+            <a href="/forum" class="block px-5 py-4 rounded-xl hover:bg-white/10">
+                Legal Forum
+            </a>
+
 
             <a href="#" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Messages

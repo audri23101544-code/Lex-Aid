@@ -30,7 +30,9 @@
             <a href="/client/appointments" class="block px-5 py-3 rounded-xl hover:bg-green-50 text-green-700 font-bold">
                 📅 Book Appointment
             </a>
-
+            <a href="/client/means-test" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
+                ✅ Means Test
+            </a>
             <a href="/client/evidence" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
                 📄 Evidence
             </a>

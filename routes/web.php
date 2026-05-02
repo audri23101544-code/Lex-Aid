@@ -9,9 +9,13 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\ForumController;
+<<<<<<< Updated upstream
 use App\Http\Controllers\HearingNoteController;
 
 
+=======
+use App\Http\Controllers\MeansTestController;
+>>>>>>> Stashed changes
 
 
 Route::get('/', function () {
@@ -90,3 +94,7 @@ Route::post('/lawyer/hearing-notes/store', [HearingNoteController::class, 'store
 Route::get('/admin/priority', [PriorityController::class, 'index']);
 Route::post('/admin/priority/update/{id}', [PriorityController::class, 'updateOne']);
 Route::post('/admin/priority/update-all', [PriorityController::class, 'updateAll']);
+// Automated Eligibility / Means Test
+Route::get('/client/means-test', [MeansTestController::class, 'create']);
+Route::post('/client/means-test', [MeansTestController::class, 'store']);
+Route::get('/admin/means-tests', [MeansTestController::class, 'adminIndex']);

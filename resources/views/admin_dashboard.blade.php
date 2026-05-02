@@ -97,6 +97,13 @@
                 <p class="text-gray-600 mb-4">View and manage urgent legal requests.</p>
                 <span class="text-red-600 font-bold">Open SOS →</span>
             </a>
+            <a href="/admin/means-tests" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h3 class="text-xl font-bold text-yellow-700 mb-2">Means Test Review</h3>
+                <p class="text-gray-600 mb-4">Review client financial eligibility results.</p>
+                <span class="text-yellow-700 font-bold">Open Means Tests →</span>
+            </a>
+
+
 
             <a href="/admin/performance" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
                 <h3 class="text-xl font-bold text-blue-700 mb-2">Performance Dashboard</h3>
