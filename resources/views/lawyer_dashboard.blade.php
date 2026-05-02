@@ -80,8 +80,30 @@
             </div>
         </div>
 
+        @if(session('success'))
+            <div class="bg-green-100 text-green-700 p-4 rounded mb-6">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="bg-red-100 text-red-700 p-4 rounded mb-6">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if($errors->any())
+            <div class="bg-red-100 text-red-700 p-4 rounded mb-6">
+                <ul class="list-disc ml-5">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <!-- Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-6 mb-8">
             <div class="bg-white p-6 rounded-2xl shadow">
                 <p class="text-gray-500">My Active Cases</p>
                 <h3 class="text-4xl font-bold mt-3">{{ $totalCases ?? 0 }}</h3>
@@ -104,6 +126,22 @@
                 <p class="text-gray-500">Completed Cases</p>
                 <h3 class="text-4xl font-bold mt-3 text-green-600">{{ $closedCases ?? 0 }}</h3>
                 <p class="text-green-600 text-sm mt-4">Resolved</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow">
+                <p class="text-gray-500">Total Earnings</p>
+                <h3 class="text-3xl font-bold mt-3 text-green-700">
+                    ৳{{ number_format($totalEarnings ?? 0, 2) }}
+                </h3>
+                <p class="text-green-600 text-sm mt-4">Paid payments</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow">
+                <p class="text-gray-500">Pending Payments</p>
+                <h3 class="text-3xl font-bold mt-3 text-yellow-700">
+                    ৳{{ number_format($pendingPayments ?? 0, 2) }}
+                </h3>
+                <p class="text-yellow-600 text-sm mt-4">Awaiting client payment</p>
             </div>
         </div>
 
@@ -250,27 +288,58 @@
             <div class="flex justify-between items-center mb-5">
                 <div>
                     <h3 class="text-2xl font-bold">Recent Case Updates</h3>
-                    <p class="text-gray-500">Assigned cases and current status</p>
+                    <p class="text-gray-500">Assigned cases, billing amount, and current status</p>
                 </div>
             </div>
 
             @if(isset($allCases) && $allCases->count() > 0)
                 <div class="space-y-4">
                     @foreach($allCases as $case)
-                        <div class="border rounded-xl p-4 flex justify-between items-center hover:bg-gray-50">
+                        <div class="border rounded-xl p-4 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 hover:bg-gray-50">
                             <div>
                                 <h4 class="font-bold">{{ $case->title ?? 'Untitled Case' }}</h4>
                                 <p class="text-sm text-gray-500">
                                     Case #LX-{{ $case->id }} · {{ $case->case_type ?? 'N/A' }}
                                 </p>
+
+                                @if($case->payment_amount)
+                                    <p class="text-sm text-gray-600 mt-2">
+                                        Amount: <strong>৳{{ number_format($case->payment_amount, 2) }}</strong>
+                                        · Payment:
+                                        <strong>{{ ucfirst($case->payment_status ?? 'pending') }}</strong>
+                                    </p>
+                                @else
+                                    <p class="text-sm text-gray-400 mt-2">
+                                        No amount set yet.
+                                    </p>
+                                @endif
                             </div>
 
-                            <div class="text-right">
+                            <div class="text-right min-w-[280px]">
                                 <p class="font-bold text-[#002147]">
                                     {{ ucfirst(str_replace('_', ' ', $case->status ?? 'open')) }}
                                 </p>
 
                                 <p class="text-sm text-gray-500">Deadline: {{ $case->deadline ?? 'N/A' }}</p>
+
+                                @if(($case->status ?? '') !== 'closed')
+                                    <form method="POST" action="/lawyer/cases/{{ $case->id }}/set-amount" class="mt-3">
+                                        @csrf
+                                        <div class="flex gap-2 justify-end">
+                                            <input type="number"
+                                                name="amount"
+                                                step="0.01"
+                                                min="1"
+                                                value="{{ $case->payment_amount ?? '' }}"
+                                                placeholder="Set amount"
+                                                class="border rounded px-3 py-2 text-sm w-32">
+
+                                            <button type="submit" class="bg-[#002147] text-white px-3 py-2 rounded text-sm font-bold hover:bg-[#003366]">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </form>
+                                @endif
 
                                 @if(($case->status ?? '') === 'in_progress')
                                     <form method="POST" action="/lawyer/cases/{{ $case->id }}/complete" class="mt-2">
