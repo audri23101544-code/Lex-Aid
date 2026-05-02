@@ -35,6 +35,10 @@
                 Calendar
             </a>
 
+            <a href="/lawyer/hearing-notes" class="block px-5 py-4 rounded-xl hover:bg-white/10">
+                Hearing Notes
+            </a>
+
             <a href="/lawyer/evidence" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Documents
             </a>
@@ -42,7 +46,6 @@
             <a href="/forum" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Legal Forum
             </a>
-
 
             <a href="#" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Messages
@@ -96,7 +99,6 @@
                 <h3 class="text-4xl font-bold mt-3 text-red-600">{{ $totalSos ?? 0 }}</h3>
                 <p class="text-red-600 text-sm mt-4">Require attention</p>
             </div>
-            
 
             <div class="bg-white p-6 rounded-2xl shadow">
                 <p class="text-gray-500">Completed Cases</p>
@@ -104,31 +106,33 @@
                 <p class="text-green-600 text-sm mt-4">Resolved</p>
             </div>
         </div>
-        <!-- Admin Notifications -->
-<section class="bg-white rounded-2xl shadow p-6 mb-8">
-    <div class="flex justify-between items-center mb-5">
-        <div>
-            <h3 class="text-2xl font-bold">🔔 Admin Notifications</h3>
-            <p class="text-gray-500">Messages sent by admin</p>
-        </div>
-    </div>
 
-    @if(isset($notifications) && $notifications->count() > 0)
-        <div class="space-y-4">
-            @foreach($notifications as $notification)
-                <div class="border rounded-xl p-4 bg-blue-50">
-                    <h4 class="font-bold text-[#002147]">{{ $notification->subject }}</h4>
-                    <p class="text-sm text-gray-600 mt-1">{{ $notification->message }}</p>
-                    <p class="text-xs text-gray-400 mt-2">{{ $notification->created_at }}</p>
+        <!-- Admin Notifications -->
+        <section class="bg-white rounded-2xl shadow p-6 mb-8">
+            <div class="flex justify-between items-center mb-5">
+                <div>
+                    <h3 class="text-2xl font-bold">🔔 Admin Notifications</h3>
+                    <p class="text-gray-500">Messages sent by admin</p>
                 </div>
-            @endforeach
-        </div>
-    @else
-        <div class="bg-gray-100 p-4 rounded text-gray-600">
-            No notifications from admin yet.
-        </div>
-    @endif
-</section>
+            </div>
+
+            @if(isset($notifications) && $notifications->count() > 0)
+                <div class="space-y-4">
+                    @foreach($notifications as $notification)
+                        <div class="border rounded-xl p-4 bg-blue-50">
+                            <h4 class="font-bold text-[#002147]">{{ $notification->subject }}</h4>
+                            <p class="text-sm text-gray-600 mt-1">{{ $notification->message }}</p>
+                            <p class="text-xs text-gray-400 mt-2">{{ $notification->created_at }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="bg-gray-100 p-4 rounded text-gray-600">
+                    No notifications from admin yet.
+                </div>
+            @endif
+        </section>
+
         <!-- Middle Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
 
@@ -188,40 +192,55 @@
                 @endif
             </section>
 
-            <!-- Upcoming Hearings Static -->
+            <!-- Hearing Notes -->
             <section class="bg-white rounded-2xl shadow p-6">
                 <div class="flex justify-between items-center mb-5">
                     <div>
-                        <h3 class="text-2xl font-bold">📅 Upcoming Hearings</h3>
-                        <p class="text-gray-500">Today’s legal schedule</p>
+                        <h3 class="text-2xl font-bold">📅 Hearing Notes</h3>
+                        <p class="text-gray-500">Recent notes from your assigned cases</p>
                     </div>
+
+                    <a href="/lawyer/hearing-notes" class="text-blue-600 font-bold hover:underline">
+                        View All
+                    </a>
                 </div>
 
-                <div class="space-y-4">
-                    <div class="border rounded-xl p-4 flex justify-between">
-                        <div>
-                            <h4 class="font-bold">Client Consultation</h4>
-                            <p class="text-sm text-gray-500">District Court / Online</p>
-                        </div>
-                        <span class="text-yellow-700 font-bold">11:00 AM</span>
-                    </div>
+                @if(isset($hearingNotes) && $hearingNotes->count() > 0)
+                    <div class="space-y-4">
+                        @foreach($hearingNotes as $note)
+                            <div class="border rounded-xl p-4 hover:bg-gray-50">
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <h4 class="font-bold text-[#002147]">
+                                            {{ $note->case_title }}
+                                        </h4>
 
-                    <div class="border rounded-xl p-4 flex justify-between">
-                        <div>
-                            <h4 class="font-bold">Case Review Meeting</h4>
-                            <p class="text-sm text-gray-500">Family Court</p>
-                        </div>
-                        <span class="text-yellow-700 font-bold">02:30 PM</span>
-                    </div>
+                                        <p class="text-sm text-gray-500">
+                                            Client: {{ $note->client_name ?? 'N/A' }}
+                                            · Type: {{ $note->case_type ?? 'N/A' }}
+                                        </p>
 
-                    <div class="border rounded-xl p-4 flex justify-between">
-                        <div>
-                            <h4 class="font-bold">Evidence Review</h4>
-                            <p class="text-sm text-gray-500">Document verification</p>
-                        </div>
-                        <span class="text-yellow-700 font-bold">Tomorrow</span>
+                                        <p class="text-sm text-gray-600 mt-2">
+                                            {{ \Illuminate\Support\Str::limit($note->note, 100) }}
+                                        </p>
+                                    </div>
+
+                                    <span class="text-yellow-700 font-bold text-sm whitespace-nowrap">
+                                        {{ $note->hearing_date ?? 'No date' }}
+                                    </span>
+                                </div>
+
+                                <p class="text-xs text-gray-400 mt-3">
+                                    Created: {{ $note->created_at }}
+                                </p>
+                            </div>
+                        @endforeach
                     </div>
-                </div>
+                @else
+                    <div class="bg-gray-100 p-4 rounded text-gray-600">
+                        No hearing notes yet.
+                    </div>
+                @endif
             </section>
 
         </div>

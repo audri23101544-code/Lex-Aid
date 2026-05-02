@@ -92,94 +92,111 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Registration successful! Please login.');
     }
 
-public function clientDashboard()
-{
-    if (!Session::has('user')) {
-        return redirect('/login');
+    public function clientDashboard()
+    {
+        if (!Session::has('user')) {
+            return redirect('/login');
+        }
+
+        $user = Session::get('user');
+
+        if ($user->role != 'client') {
+            return redirect('/login');
+        }
+
+        $yourCases = DB::table('cases')
+            ->where('client_id', $user->id)
+            ->latest('id')
+            ->get();
+
+        $notifications = DB::table('user_notifications')
+            ->where('user_id', $user->id)
+            ->latest('id')
+            ->get();
+
+        return view('client_dashboard', compact(
+            'user',
+            'yourCases',
+            'notifications'
+        ));
     }
-
-    $user = Session::get('user');
-
-    if ($user->role != 'client') {
-        return redirect('/login');
-    }
-
-    $yourCases = DB::table('cases')
-        ->where('client_id', $user->id)
-        ->latest('id')
-        ->get();
-
-    $notifications = DB::table('user_notifications')
-        ->where('user_id', $user->id)
-        ->latest('id')
-        ->get();
-
-    return view('client_dashboard', compact(
-        'user',
-        'yourCases',
-        'notifications'
-    ));
-}
 
     public function lawyerDashboard()
-{
-    if (!Session::has('user')) {
-        return redirect('/login');
+    {
+        if (!Session::has('user')) {
+            return redirect('/login');
+        }
+
+        $user = Session::get('user');
+
+        if ($user->role != 'lawyer') {
+            return redirect('/login');
+        }
+
+        $notifications = DB::table('user_notifications')
+            ->where('user_id', $user->id)
+            ->latest('id')
+            ->get();
+
+        $allCases = DB::table('cases')
+            ->where('lawyer_id', $user->id)
+            ->latest('id')
+            ->get();
+
+        $totalCases = $allCases->count();
+
+        $openCases = DB::table('cases')
+            ->where('lawyer_id', $user->id)
+            ->where('status', 'open')
+            ->count();
+
+        $inProgressCases = DB::table('cases')
+            ->where('lawyer_id', $user->id)
+            ->where('status', 'in_progress')
+            ->count();
+
+        $closedCases = DB::table('cases')
+            ->where('lawyer_id', $user->id)
+            ->where('status', 'closed')
+            ->count();
+
+        $sosRequests = DB::table('sos_requests')
+            ->whereIn('status', ['pending', 'reviewing'])
+            ->latest('id')
+            ->take(5)
+            ->get();
+
+        $totalSos = DB::table('sos_requests')
+            ->whereIn('status', ['pending', 'reviewing'])
+            ->count();
+
+        $hearingNotes = DB::table('hearing_notes')
+            ->join('cases', 'hearing_notes.case_id', '=', 'cases.id')
+            ->join('users as clients', 'cases.client_id', '=', 'clients.id')
+            ->where('hearing_notes.lawyer_id', $user->id)
+            ->select(
+                'hearing_notes.*',
+                'cases.title as case_title',
+                'cases.case_type',
+                'clients.name as client_name'
+            )
+            ->latest('hearing_notes.id')
+            ->take(3)
+            ->get();
+
+        return view('lawyer_dashboard', compact(
+            'user',
+            'allCases',
+            'totalCases',
+            'openCases',
+            'inProgressCases',
+            'closedCases',
+            'sosRequests',
+            'totalSos',
+            'notifications',
+            'hearingNotes'
+        ));
     }
-
-    $user = Session::get('user');
-
-    if ($user->role != 'lawyer') {
-        return redirect('/login');
-    }
-    $notifications = DB::table('user_notifications')
-        ->where('user_id', $user->id)
-        ->latest('id')
-        ->get();
-    $allCases = DB::table('cases')
-        ->where('lawyer_id', $user->id)
-        ->latest('id')
-        ->get();
-
-    $totalCases = $allCases->count();
-
-    $openCases = DB::table('cases')
-        ->where('lawyer_id', $user->id)
-        ->where('status', 'open')
-        ->count();
-
-    $inProgressCases = DB::table('cases')
-        ->where('lawyer_id', $user->id)
-        ->where('status', 'in_progress')
-        ->count();
-
-    $closedCases = DB::table('cases')
-        ->where('lawyer_id', $user->id)
-        ->where('status', 'closed')
-        ->count();
-
-    $sosRequests = DB::table('sos_requests')
-        ->whereIn('status', ['pending', 'reviewing'])
-        ->latest('id')
-        ->take(5)
-        ->get();
-
-    $totalSos = DB::table('sos_requests')
-        ->whereIn('status', ['pending', 'reviewing'])
-        ->count();
-
-    return view('lawyer_dashboard', compact(
-    'user',
-    'allCases',
-    'totalCases',
-    'openCases',
-    'inProgressCases',
-    'closedCases',
-    'sosRequests',
-    'totalSos',
-    'notifications'
-    ));
-}
 
     public function dashboard()
     {
