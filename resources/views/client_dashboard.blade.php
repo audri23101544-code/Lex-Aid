@@ -390,6 +390,10 @@
                         ☁️<br>Upload Evidence
                     </a>
 
+                    <a href="/client/payments" class="bg-pink-50 p-5 rounded-xl text-center font-bold hover:bg-pink-100">
+                        💳<br>Payments
+                    </a>
+
                     <a href="/client/sos" class="bg-red-50 p-5 rounded-xl text-center font-bold text-red-600 hover:bg-red-100">
                         🚨<br>Emergency SOS
                     </a>

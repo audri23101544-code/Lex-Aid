@@ -51,6 +51,8 @@ Route::get('/admin/cases', [CaseController::class, 'adminCases']);
 Route::post('/admin/cases/{id}/assign-lawyer', [CaseController::class, 'assignLawyer']);
 Route::post('/lawyer/cases/{id}/complete', [CaseController::class, 'completeCase']);
 Route::post('/lawyer/cases/{caseId}/set-amount', [CasePaymentController::class, 'setAmount']);
+Route::get('/client/payments', [CasePaymentController::class, 'clientPayments']);
+Route::post('/client/payments/{paymentId}/bkash', [CasePaymentController::class, 'payWithBkash']);
 Route::post('/register', [AuthController::class, 'register']);
 
 use App\Http\Controllers\SosController;
