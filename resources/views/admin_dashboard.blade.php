@@ -172,7 +172,7 @@
                     <p class="text-gray-600">Latest submitted legal aid cases</p>
                 </div>
 
-                <a href="/cases" class="bg-[#002147] text-white px-4 py-2 rounded">
+                <a href="/admin/cases" class="bg-[#002147] text-white px-4 py-2 rounded">
                     View Cases
                 </a>
             </div>
