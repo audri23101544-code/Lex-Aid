@@ -164,4 +164,70 @@ class CaseController extends Controller
 
         return view('cases', compact('user', 'cases'));
     }
+
+    public function adminCases()
+    {
+        if (!Session::has('user')) {
+            return redirect('/login');
+        }
+
+        $user = Session::get('user');
+
+        if ($user->role != 'admin') {
+            return redirect('/login');
+        }
+
+        $cases = DB::table('cases')
+            ->leftJoin('users as clients', 'cases.client_id', '=', 'clients.id')
+            ->leftJoin('users as lawyers', 'cases.lawyer_id', '=', 'lawyers.id')
+            ->select(
+                'cases.*',
+                'clients.name as client_name',
+                'lawyers.name as lawyer_name'
+            )
+            ->latest('cases.id')
+            ->get();
+
+        $lawyers = DB::table('users')
+            ->where('role', 'lawyer')
+            ->orderBy('name')
+            ->get();
+
+        return view('admin_cases', compact('user', 'cases', 'lawyers'));
+    }
+
+    public function assignLawyer(Request $request, $id)
+    {
+        if (!Session::has('user')) {
+            return redirect('/login');
+        }
+
+        $user = Session::get('user');
+
+        if ($user->role != 'admin') {
+            return redirect('/login');
+        }
+
+        $request->validate([
+            'lawyer_id' => 'required|exists:users,id',
+        ]);
+
+        $lawyer = DB::table('users')
+            ->where('id', $request->lawyer_id)
+            ->where('role', 'lawyer')
+            ->first();
+
+        if (!$lawyer) {
+            return back()->with('error', 'Selected user is not a lawyer.');
+        }
+
+        DB::table('cases')
+            ->where('id', $id)
+            ->update([
+                'lawyer_id' => $request->lawyer_id,
+                'status' => 'in_progress',
+            ]);
+
+        return back()->with('success', 'Lawyer assigned successfully.');
+    }
 }

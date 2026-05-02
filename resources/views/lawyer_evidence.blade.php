@@ -18,11 +18,17 @@
 </header>
 
 <main class="max-w-6xl mx-auto py-10 px-6">
-    <div class="mb-8">
-        <h2 class="text-3xl font-bold text-[#002147]">Client Evidence Review</h2>
-        <p class="text-slate-600 mt-2">
-            View evidence uploaded by clients for cases assigned to you.
-        </p>
+    <div class="mb-8 flex justify-between items-center">
+        <div>
+            <h2 class="text-3xl font-bold text-[#002147]">Client Evidence Review</h2>
+            <p class="text-slate-600 mt-2">
+                View evidence uploaded by clients for cases assigned to you.
+            </p>
+        </div>
+
+        <a href="/lawyer" class="bg-blue-800 text-white px-5 py-3 rounded font-bold hover:bg-blue-900">
+            Back to Lawyer Dashboard
+        </a>
     </div>
 
     <section class="bg-white rounded-xl shadow p-6">

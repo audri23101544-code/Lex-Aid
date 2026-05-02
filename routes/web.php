@@ -43,6 +43,8 @@ Route::get('/case/create', [CaseController::class, 'create']);
 Route::post('/case/store', [CaseController::class, 'store']);
 Route::get('/cases', [CaseController::class, 'index']);
 Route::get('/submit-case', [CaseController::class, 'create']);
+Route::get('/admin/cases', [CaseController::class, 'adminCases']);
+Route::post('/admin/cases/{id}/assign-lawyer', [CaseController::class, 'assignLawyer']);
 Route::post('/register', [AuthController::class, 'register']);
 
 use App\Http\Controllers\SosController;
