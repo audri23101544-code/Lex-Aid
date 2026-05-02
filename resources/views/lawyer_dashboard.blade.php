@@ -266,8 +266,20 @@
                             </div>
 
                             <div class="text-right">
-                                <p class="font-bold text-[#002147]">{{ ucfirst($case->status ?? 'open') }}</p>
+                                <p class="font-bold text-[#002147]">
+                                    {{ ucfirst(str_replace('_', ' ', $case->status ?? 'open')) }}
+                                </p>
+
                                 <p class="text-sm text-gray-500">Deadline: {{ $case->deadline ?? 'N/A' }}</p>
+
+                                @if(($case->status ?? '') === 'in_progress')
+                                    <form method="POST" action="/lawyer/cases/{{ $case->id }}/complete" class="mt-2">
+                                        @csrf
+                                        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded font-bold hover:bg-green-700 text-sm">
+                                            Mark Completed
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                     @endforeach

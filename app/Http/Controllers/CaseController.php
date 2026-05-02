@@ -230,4 +230,35 @@ class CaseController extends Controller
 
         return back()->with('success', 'Lawyer assigned successfully.');
     }
+
+    public function completeCase($id)
+    {
+        if (!Session::has('user')) {
+            return redirect('/login');
+        }
+
+        $user = Session::get('user');
+
+        if ($user->role != 'lawyer') {
+            return redirect('/login');
+        }
+
+        $case = DB::table('cases')
+            ->where('id', $id)
+            ->where('lawyer_id', $user->id)
+            ->first();
+
+        if (!$case) {
+            return back()->with('error', 'Case not found or not assigned to you.');
+        }
+
+        DB::table('cases')
+            ->where('id', $id)
+            ->where('lawyer_id', $user->id)
+            ->update([
+                'status' => 'closed',
+            ]);
+
+        return back()->with('success', 'Case marked as completed successfully.');
+    }
 }
