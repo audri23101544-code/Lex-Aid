@@ -9,13 +9,10 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\ForumController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\HearingNoteController;
 
 
-=======
 use App\Http\Controllers\MeansTestController;
->>>>>>> Stashed changes
 
 
 Route::get('/', function () {
