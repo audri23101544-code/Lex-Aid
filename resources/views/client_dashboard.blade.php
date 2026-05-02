@@ -46,6 +46,10 @@
             <a href="/client/sos" class="block px-5 py-3 rounded-xl hover:bg-red-50 text-red-600 font-bold">
                 ⚠️ Emergency SOS
             </a>
+            
+            <a href="/logout" class="block mt-6 bg-red-600 text-white text-center py-3 rounded-xl font-bold hover:bg-red-700">
+                        Logout
+            </a>
         </nav>
 
         <div class="mt-10 bg-[#002147] text-white rounded-xl p-5">
