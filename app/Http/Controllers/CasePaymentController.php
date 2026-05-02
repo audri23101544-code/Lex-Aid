@@ -134,4 +134,48 @@ class CasePaymentController extends Controller
 
         return back()->with('success', 'Payment completed successfully via mock bKash.');
     }
+
+    public function adminPayments()
+    {
+        if (!Session::has('user')) {
+            return redirect('/login');
+        }
+
+        $user = Session::get('user');
+
+        if ($user->role != 'admin') {
+            return redirect('/login');
+        }
+
+        $payments = DB::table('case_payments')
+            ->join('cases', 'case_payments.case_id', '=', 'cases.id')
+            ->join('users as clients', 'case_payments.client_id', '=', 'clients.id')
+            ->join('users as lawyers', 'case_payments.lawyer_id', '=', 'lawyers.id')
+            ->select(
+                'case_payments.*',
+                'cases.title as case_title',
+                'cases.case_type',
+                'cases.status as case_status',
+                'clients.name as client_name',
+                'lawyers.name as lawyer_name'
+            )
+            ->latest('case_payments.id')
+            ->get();
+
+        $totalAmount = DB::table('case_payments')->sum('amount');
+        $paidAmount = DB::table('case_payments')->where('status', 'paid')->sum('amount');
+        $pendingAmount = DB::table('case_payments')->where('status', 'pending')->sum('amount');
+        $paidCount = DB::table('case_payments')->where('status', 'paid')->count();
+        $pendingCount = DB::table('case_payments')->where('status', 'pending')->count();
+
+        return view('admin_payments', compact(
+            'user',
+            'payments',
+            'totalAmount',
+            'paidAmount',
+            'pendingAmount',
+            'paidCount',
+            'pendingCount'
+        ));
+    }
 }
