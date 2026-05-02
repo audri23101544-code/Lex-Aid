@@ -9,6 +9,8 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\HearingNoteController;
+
 
 
 
@@ -79,6 +81,10 @@ Route::post('/client/appointments', [AppointmentController::class, 'clientStore'
 
 Route::get('/lawyer/appointments', [AppointmentController::class, 'lawyerIndex']);
 Route::post('/lawyer/appointments/update/{id}', [AppointmentController::class, 'updateStatus']);
+
+// Hearing Notes sos
+Route::get('/lawyer/hearing-notes', [HearingNoteController::class, 'index']);
+Route::post('/lawyer/hearing-notes/store', [HearingNoteController::class, 'store']);
 
 // Case Priority Scoring System
 Route::get('/admin/priority', [PriorityController::class, 'index']);
