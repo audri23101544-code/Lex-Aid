@@ -40,7 +40,17 @@
                 Back to Admin
             </a>
         </div>
+        @if(session('success'))
+            <div class="bg-green-100 text-green-700 p-4 rounded-xl mb-6">
+                {{ session('success') }}
+            </div>
+        @endif
 
+        @if(session('error'))
+            <div class="bg-red-100 text-red-700 p-4 rounded-xl mb-6">
+                {{ session('error') }}
+            </div>
+        @endif
         <!-- Summary -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-green-100 border border-green-200 p-6 rounded-2xl shadow">
@@ -109,6 +119,7 @@
                                 <th class="p-4">Score</th>
                                 <th class="p-4">Result</th>
                                 <th class="p-4">Date</th>
+                                <th class="p-4">Grant Allocation</th>
                             </tr>
                         </thead>
 
@@ -137,6 +148,56 @@
                                     </td>
 
                                     <td class="p-4 text-sm text-gray-500">{{ $test->created_at }}</td>
+                                    <td class="p-4">
+                                    @if($test->result == 'eligible' || $test->result == 'partially_eligible')
+                                        <form method="POST" action="/admin/means-tests/allocate-funding" class="space-y-2">
+                                            @csrf
+
+                                            <select name="funding_source_id" required class="w-full border p-2 rounded text-sm">
+                                                <option value="">Select Fund</option>
+                                                @foreach($sources as $source)
+                                                    <option value="{{ $source->id }}">
+                                                        {{ $source->source_name }} - ৳{{ number_format($source->total_amount, 2) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+
+                                            <select name="case_id" required class="w-full border p-2 rounded text-sm">
+                                                <option value="">Select Client Case</option>
+                                                @foreach($cases->where('client_id', $test->client_id) as $case)
+                                                    <option value="{{ $case->id }}">
+                                                        #LX-{{ $case->id }} - {{ $case->title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+
+                                            <input 
+                                                type="number" 
+                                                name="allocated_amount" 
+                                                min="1" 
+                                                step="0.01" 
+                                                required 
+                                                placeholder="Amount" 
+                                                class="w-full border p-2 rounded text-sm"
+                                            >
+
+                                            <input 
+                                                type="text" 
+                                                name="note" 
+                                                placeholder="Note optional" 
+                                                class="w-full border p-2 rounded text-sm"
+                                            >
+
+                                            <button class="w-full bg-green-700 text-white py-2 rounded font-bold text-sm">
+                                                Allocate Grant
+                                            </button>
+                                        </form>
+                                    @else
+                                        <span class="text-sm text-gray-400 italic">
+                                            Not eligible
+                                        </span>
+                                    @endif
+                                </td>
                                 </tr>
 
                                 @if($test->notes)

@@ -44,7 +44,71 @@ class FundingController extends Controller
             'remaining'
         ));
     }
+    public function allocateFromMeansTest(Request $request)
+{
+    if (!Session::has('user')) {
+        return redirect('/login');
+    }
 
+    $user = Session::get('user');
+
+    if ($user->role != 'admin') {
+        return redirect('/login');
+    }
+
+    $request->validate([
+        'funding_source_id' => 'required',
+        'case_id' => 'required',
+        'allocated_amount' => 'required|numeric|min:1',
+        'note' => 'nullable'
+    ]);
+
+    $source = DB::table('funding_sources')
+        ->where('id', $request->funding_source_id)
+        ->first();
+
+    if (!$source) {
+        return back()->with('error', 'Funding source not found.');
+    }
+
+    $totalAllocatedFromSource = DB::table('funding_allocations')
+        ->where('funding_source_id', $request->funding_source_id)
+        ->sum('allocated_amount');
+
+    $remainingForSource = $source->total_amount - $totalAllocatedFromSource;
+
+    if ($request->allocated_amount > $remainingForSource) {
+        return back()->with('error', 'Not enough remaining balance in this funding source.');
+    }
+
+    $case = DB::table('cases')
+        ->where('id', $request->case_id)
+        ->first();
+
+    if (!$case) {
+        return back()->with('error', 'Selected case not found.');
+    }
+
+    DB::table('funding_allocations')->insert([
+        'funding_source_id' => $request->funding_source_id,
+        'case_id' => $request->case_id,
+        'allocated_amount' => $request->allocated_amount,
+        'note' => $request->note
+    ]);
+    $case = DB::table('cases')
+    ->where('id', $request->case_id)
+    ->first();
+
+    if ($case) {
+        DB::table('user_notifications')->insert([
+            'user_id' => $case->client_id,
+            'subject' => 'Grant Funding Approved',
+            'message' => 'Admin has allocated ৳' . number_format($request->allocated_amount, 2) . ' grant support for your case #' . $request->case_id . '.'
+        ]);
+}
+
+    return back()->with('success', 'Grant allocated successfully to case #' . $request->case_id);
+}
     public function storeSource(Request $request)
     {
         DB::table('funding_sources')->insert([

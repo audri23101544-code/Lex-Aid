@@ -121,6 +121,73 @@
                 </div>
             </section>
 
+            <!-- Grant Support Card -->
+            <section class="bg-white rounded-2xl shadow p-6 mb-8 border border-green-100">
+                <div class="flex justify-between items-start mb-5">
+                    <div>
+                        <h2 class="text-2xl font-bold text-[#002147]">Grant Support</h2>
+                        <p class="text-gray-500">Legal aid funding approved for your cases</p>
+                    </div>
+
+                    <div class="bg-green-100 text-green-700 px-4 py-2 rounded-xl font-bold">
+                        ৳{{ number_format($totalGrantReceived ?? 0, 2) }}
+                    </div>
+                </div>
+
+                @if(isset($grantAllocations) && $grantAllocations->count() > 0)
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        @foreach($grantAllocations->take(4) as $grant)
+                            <div class="border rounded-xl p-4 bg-green-50">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="font-bold text-[#002147]">
+                                            Case #LX-{{ $grant->case_number }}
+                                        </h3>
+                                        <p class="text-sm text-gray-600">
+                                            {{ $grant->case_title }}
+                                        </p>
+                                        <p class="text-xs text-gray-500 mt-1">
+                                            Fund: {{ $grant->source_name }}
+                                        </p>
+
+                                        @if($grant->note)
+                                            <p class="text-xs text-gray-500 mt-2">
+                                                Note: {{ $grant->note }}
+                                            </p>
+                                        @endif
+                                    </div>
+
+                                    <div class="text-right">
+                                        <p class="text-xl font-bold text-green-700">
+                                            ৳{{ number_format($grant->allocated_amount, 2) }}
+                                        </p>
+                                        <p class="text-xs text-gray-400">
+                                            {{ $grant->created_at }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="bg-gray-50 rounded-xl p-5 text-gray-600">
+                        No grant support has been allocated yet. If you pass the means test, admin may allocate funding support to your case.
+                    </div>
+                @endif
+            </section>
+                        
+
+
+
+
+
+
+
+
+
+
+
+
             <!-- Notifications + Summary -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
 

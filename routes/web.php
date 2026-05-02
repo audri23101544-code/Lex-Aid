@@ -95,3 +95,4 @@ Route::post('/admin/priority/update-all', [PriorityController::class, 'updateAll
 Route::get('/client/means-test', [MeansTestController::class, 'create']);
 Route::post('/client/means-test', [MeansTestController::class, 'store']);
 Route::get('/admin/means-tests', [MeansTestController::class, 'adminIndex']);
+Route::post('/admin/means-tests/allocate-funding', [FundingController::class, 'allocateFromMeansTest']);

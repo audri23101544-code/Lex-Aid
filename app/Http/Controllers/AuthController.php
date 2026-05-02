@@ -113,11 +113,28 @@ class AuthController extends Controller
             ->where('user_id', $user->id)
             ->latest('id')
             ->get();
+        $grantAllocations = DB::table('funding_allocations')
+            ->join('cases', 'funding_allocations.case_id', '=', 'cases.id')
+            ->join('funding_sources', 'funding_allocations.funding_source_id', '=', 'funding_sources.id')
+            ->where('cases.client_id', $user->id)
+            ->select(
+                'funding_allocations.*',
+                'cases.title as case_title',
+                'cases.id as case_number',
+                'funding_sources.source_name'
+            )
+            ->latest('funding_allocations.id')
+            ->get();
+
+        $totalGrantReceived = $grantAllocations->sum('allocated_amount');
+        
 
         return view('client_dashboard', compact(
             'user',
             'yourCases',
-            'notifications'
+            'notifications',
+            'grantAllocations',
+            'totalGrantReceived'
         ));
     }
 

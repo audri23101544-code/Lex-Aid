@@ -133,13 +133,22 @@ class MeansTestController extends Controller
         $eligibleCount = $tests->where('result', 'eligible')->count();
         $partialCount = $tests->where('result', 'partially_eligible')->count();
         $notEligibleCount = $tests->where('result', 'not_eligible')->count();
+        $sources = DB::table('funding_sources')->get();
 
+       
+        $cases = DB::table('cases')
+            ->leftJoin('users', 'cases.client_id', '=', 'users.id')
+            ->select('cases.*', 'users.name as client_name')
+            ->latest('cases.id')
+            ->get();
         return view('admin_means_tests', compact(
             'user',
             'tests',
             'eligibleCount',
             'partialCount',
-            'notEligibleCount'
+            'notEligibleCount',
+            'sources',
+            'cases'
         ));
     }
 }
