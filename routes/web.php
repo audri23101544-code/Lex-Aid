@@ -12,7 +12,6 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HearingNoteController;
 
 
-use App\Http\Controllers\MeansTestController;
 
 
 Route::get('/', function () {
@@ -48,6 +47,7 @@ Route::get('/cases', [CaseController::class, 'index']);
 Route::get('/submit-case', [CaseController::class, 'create']);
 Route::get('/admin/cases', [CaseController::class, 'adminCases']);
 Route::post('/admin/cases/{id}/assign-lawyer', [CaseController::class, 'assignLawyer']);
+Route::post('/lawyer/cases/{id}/complete', [CaseController::class, 'completeCase']);
 Route::post('/register', [AuthController::class, 'register']);
 
 use App\Http\Controllers\SosController;
@@ -91,8 +91,3 @@ Route::post('/lawyer/hearing-notes/store', [HearingNoteController::class, 'store
 Route::get('/admin/priority', [PriorityController::class, 'index']);
 Route::post('/admin/priority/update/{id}', [PriorityController::class, 'updateOne']);
 Route::post('/admin/priority/update-all', [PriorityController::class, 'updateAll']);
-// Automated Eligibility / Means Test
-Route::get('/client/means-test', [MeansTestController::class, 'create']);
-Route::post('/client/means-test', [MeansTestController::class, 'store']);
-Route::get('/admin/means-tests', [MeansTestController::class, 'adminIndex']);
-Route::post('/admin/means-tests/allocate-funding', [FundingController::class, 'allocateFromMeansTest']);
