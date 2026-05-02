@@ -156,8 +156,14 @@ class AuthController extends Controller
             ->get();
 
         $allCases = DB::table('cases')
-            ->where('lawyer_id', $user->id)
-            ->latest('id')
+            ->leftJoin('case_payments', 'cases.id', '=', 'case_payments.case_id')
+            ->where('cases.lawyer_id', $user->id)
+            ->select(
+                'cases.*',
+                'case_payments.amount as payment_amount',
+                'case_payments.status as payment_status'
+            )
+            ->latest('cases.id')
             ->get();
 
         $totalCases = $allCases->count();
@@ -176,6 +182,16 @@ class AuthController extends Controller
             ->where('lawyer_id', $user->id)
             ->where('status', 'closed')
             ->count();
+
+        $totalEarnings = DB::table('case_payments')
+            ->where('lawyer_id', $user->id)
+            ->where('status', 'paid')
+            ->sum('amount');
+
+        $pendingPayments = DB::table('case_payments')
+            ->where('lawyer_id', $user->id)
+            ->where('status', 'pending')
+            ->sum('amount');
 
         $sosRequests = DB::table('sos_requests')
             ->whereIn('status', ['pending', 'reviewing'])
@@ -211,7 +227,9 @@ class AuthController extends Controller
             'sosRequests',
             'totalSos',
             'notifications',
-            'hearingNotes'
+            'hearingNotes',
+            'totalEarnings',
+            'pendingPayments'
         ));
     }
 

@@ -10,6 +10,8 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HearingNoteController;
+use App\Http\Controllers\CasePaymentController;
+
 
 
 
@@ -48,6 +50,7 @@ Route::get('/submit-case', [CaseController::class, 'create']);
 Route::get('/admin/cases', [CaseController::class, 'adminCases']);
 Route::post('/admin/cases/{id}/assign-lawyer', [CaseController::class, 'assignLawyer']);
 Route::post('/lawyer/cases/{id}/complete', [CaseController::class, 'completeCase']);
+Route::post('/lawyer/cases/{caseId}/set-amount', [CasePaymentController::class, 'setAmount']);
 Route::post('/register', [AuthController::class, 'register']);
 
 use App\Http\Controllers\SosController;
