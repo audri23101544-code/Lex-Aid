@@ -11,8 +11,8 @@ use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HearingNoteController;
 use App\Http\Controllers\CasePaymentController;
-
-
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\AdminLawyerChatController;
 
 
 
@@ -97,3 +97,9 @@ Route::post('/lawyer/hearing-notes/store', [HearingNoteController::class, 'store
 Route::get('/admin/priority', [PriorityController::class, 'index']);
 Route::post('/admin/priority/update/{id}', [PriorityController::class, 'updateOne']);
 Route::post('/admin/priority/update-all', [PriorityController::class, 'updateAll']);
+
+// Chat System
+Route::get('/chat/{caseId}', [ChatController::class, 'index']);
+Route::get('/admin/lawyer-chat', [AdminLawyerChatController::class, 'adminIndex']);
+Route::get('/admin/lawyer-chat/{lawyerId}', [AdminLawyerChatController::class, 'adminChat']);
+Route::get('/lawyer/admin-chat', [AdminLawyerChatController::class, 'lawyerChat']);
