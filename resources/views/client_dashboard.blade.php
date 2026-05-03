@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,9 +30,11 @@
             <a href="/client/appointments" class="block px-5 py-3 rounded-xl hover:bg-green-50 text-green-700 font-bold">
                 📅 Book Appointment
             </a>
+
             <a href="/client/means-test" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
                 ✅ Means Test
             </a>
+
             <a href="/client/evidence" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
                 📄 Evidence
             </a>
@@ -50,7 +52,7 @@
             </a>
             
             <a href="/logout" class="block mt-6 bg-red-600 text-white text-center py-3 rounded-xl font-bold hover:bg-red-700">
-                        Logout
+                Logout
             </a>
         </nav>
 
@@ -63,10 +65,6 @@
                 Contact Support
             </a>
         </div>
-
-        <a href="/logout" class="block mt-6 bg-red-600 text-white text-center py-3 rounded-xl font-bold">
-            Logout
-        </a>
     </aside>
 
     <!-- Main Area -->
@@ -175,18 +173,6 @@
                     </div>
                 @endif
             </section>
-                        
-
-
-
-
-
-
-
-
-
-
-
 
             <!-- Notifications + Summary -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -270,38 +256,53 @@
                 </div>
 
                 @if(isset($yourCases) && $yourCases->count() > 0)
-                    <table class="w-full border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 text-left text-sm">
-                                <th class="p-4">Case Title</th>
-                                <th class="p-4">Case Type</th>
-                                <th class="p-4">Status</th>
-                                <th class="p-4">Priority</th>
-                                <th class="p-4">Deadline</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach($yourCases as $case)
-                                <tr class="border-b">
-                                    <td class="p-4 font-semibold">{{ $case->title ?? 'N/A' }}</td>
-                                    <td class="p-4">{{ $case->case_type ?? 'N/A' }}</td>
-
-                                    <td class="p-4">
-                                        <span class="px-3 py-1 rounded-full text-sm font-bold
-                                            {{ ($case->status ?? '') == 'closed' ? 'bg-green-100 text-green-700' : '' }}
-                                            {{ ($case->status ?? '') == 'in_progress' ? 'bg-blue-100 text-blue-700' : '' }}
-                                            {{ ($case->status ?? '') == 'open' ? 'bg-yellow-100 text-yellow-700' : '' }}">
-                                            {{ ucfirst($case->status ?? 'Open') }}
-                                        </span>
-                                    </td>
-
-                                    <td class="p-4">{{ ucfirst($case->priority ?? 'Medium') }}</td>
-                                    <td class="p-4">{{ $case->deadline ?? 'N/A' }}</td>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 text-left text-sm">
+                                    <th class="p-4">Case Title</th>
+                                    <th class="p-4">Case Type</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4">Priority</th>
+                                    <th class="p-4">Deadline</th>
+                                    <th class="p-4">Chat</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+
+                            <tbody>
+                                @foreach($yourCases as $case)
+                                    <tr class="border-b">
+                                        <td class="p-4 font-semibold">{{ $case->title ?? 'N/A' }}</td>
+                                        <td class="p-4">{{ $case->case_type ?? 'N/A' }}</td>
+
+                                        <td class="p-4">
+                                            <span class="px-3 py-1 rounded-full text-sm font-bold
+                                                {{ ($case->status ?? '') == 'closed' ? 'bg-green-100 text-green-700' : '' }}
+                                                {{ ($case->status ?? '') == 'in_progress' ? 'bg-blue-100 text-blue-700' : '' }}
+                                                {{ ($case->status ?? '') == 'open' ? 'bg-yellow-100 text-yellow-700' : '' }}">
+                                                {{ ucfirst(str_replace('_', ' ', $case->status ?? 'Open')) }}
+                                            </span>
+                                        </td>
+
+                                        <td class="p-4">{{ ucfirst($case->priority ?? 'Medium') }}</td>
+                                        <td class="p-4">{{ $case->deadline ?? 'N/A' }}</td>
+
+                                        <td class="p-4">
+                                            @if($case->lawyer_id)
+                                                <a href="/chat/{{ $case->id }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700 text-sm">
+                                                    Chat with Lawyer
+                                                </a>
+                                            @else
+                                                <span class="text-sm text-gray-400">
+                                                    Available after assignment
+                                                </span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 @else
                     <p class="text-gray-500">No cases submitted yet.</p>
                 @endif
@@ -360,7 +361,7 @@
                                     <div>
                                         <p class="text-sm">
                                             Your case <strong>{{ $case->title }}</strong> is currently
-                                            <strong>{{ ucfirst($case->status) }}</strong>.
+                                            <strong>{{ ucfirst(str_replace('_', ' ', $case->status)) }}</strong>.
                                         </p>
                                         <p class="text-xs text-gray-400">Recently updated</p>
                                     </div>

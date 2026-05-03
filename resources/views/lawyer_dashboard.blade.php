@@ -47,9 +47,10 @@
                 Legal Forum
             </a>
 
-            <a href="#" class="block px-5 py-4 rounded-xl hover:bg-white/10">
+            <a href="/lawyer/admin-chat" class="block px-5 py-4 rounded-xl hover:bg-white/10">
                 Messages
             </a>
+            
         </nav>
 
         <div class="mt-auto border-t border-white/20 pt-6">
@@ -340,6 +341,10 @@
                                         </div>
                                     </form>
                                 @endif
+
+                                <a href="/chat/{{ $case->id }}" class="inline-block mt-2 bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700 text-sm">
+                                    Open Chat
+                                </a>
 
                                 @if(($case->status ?? '') === 'in_progress')
                                     <form method="POST" action="/lawyer/cases/{{ $case->id }}/complete" class="mt-2">

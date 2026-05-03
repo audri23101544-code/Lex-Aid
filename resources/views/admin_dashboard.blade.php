@@ -41,6 +41,10 @@
                 Bulk Email Notifications
             </a>
 
+            <a href="/admin/lawyer-chat" class="block hover:bg-white/10 px-4 py-3 rounded">
+                Lawyer Chat
+            </a>
+
             <a href="/admin/payments" class="block hover:bg-white/10 px-4 py-3 rounded">
                 Payment Monitoring
             </a>

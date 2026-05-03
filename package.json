@@ -13,5 +13,29 @@
         "laravel-vite-plugin": "^2.0.0",
         "tailwindcss": "^4.0.0",
         "vite": "^7.0.7"
+    },
+    "name": "lex-aid",
+    "version": "1.0.0",
+    "description": "======= LexAid is a comprehensive web-based platform designed to streamline and modernize legal aid services. It connects clients, lawyers, and administrators within a secure and efficient digital ecosystem, making access to justice faster, more organized, and more inclusive.",
+    "main": "vite.config.js",
+    "directories": {
+        "test": "tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/audri23101544-code/Lex-Aid.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/audri23101544-code/Lex-Aid/issues"
+    },
+    "homepage": "https://github.com/audri23101544-code/Lex-Aid#readme",
+    "dependencies": {
+        "cors": "^2.8.6",
+        "express": "^5.2.1",
+        "mysql2": "^3.22.3",
+        "socket.io": "^4.8.3"
     }
 }
