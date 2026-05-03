@@ -49,7 +49,6 @@ class AdminLawyerChatController extends Controller
         }
 
         $messages = DB::table('admin_lawyer_messages')
-            ->where('admin_id', $user->id)
             ->where('lawyer_id', $lawyerId)
             ->orderBy('created_at', 'asc')
             ->get();
@@ -88,7 +87,6 @@ class AdminLawyerChatController extends Controller
         }
 
         $messages = DB::table('admin_lawyer_messages')
-            ->where('admin_id', $admin->id)
             ->where('lawyer_id', $user->id)
             ->orderBy('created_at', 'asc')
             ->get();
