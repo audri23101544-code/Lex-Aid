@@ -13,6 +13,7 @@ use App\Http\Controllers\HearingNoteController;
 use App\Http\Controllers\CasePaymentController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AdminLawyerChatController;
+use App\Http\Controllers\MeansTestController;
 
 
 
@@ -103,3 +104,6 @@ Route::get('/chat/{caseId}', [ChatController::class, 'index']);
 Route::get('/admin/lawyer-chat', [AdminLawyerChatController::class, 'adminIndex']);
 Route::get('/admin/lawyer-chat/{lawyerId}', [AdminLawyerChatController::class, 'adminChat']);
 Route::get('/lawyer/admin-chat', [AdminLawyerChatController::class, 'lawyerChat']);
+Route::get('/client/means-test', [MeansTestController::class, 'create']);
+Route::post('/client/means-test', [MeansTestController::class, 'store']);
+Route::get('/admin/means-tests', [MeansTestController::class, 'adminIndex']);
