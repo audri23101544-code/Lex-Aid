@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
-    <title>LexAid | Client Dashboard</title>
+    <title>LexAid | {{ __('messages.client_dashboard') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -15,54 +15,54 @@
     <aside class="w-64 bg-white border-r min-h-screen p-6 fixed left-0 top-0">
         <div class="mb-10">
             <h1 class="text-4xl font-serif font-bold text-[#002147]">⚖ LexAid</h1>
-            <p class="text-sm text-yellow-700 font-bold mt-1">CLIENT PORTAL</p>
+            <p class="text-sm text-yellow-700 font-bold mt-1">{{ __('messages.client_dashboard') }}</p>
         </div>
 
         <nav class="space-y-3">
             <a href="/client" class="block bg-yellow-100 text-[#8a6500] px-5 py-3 rounded-xl font-bold">
-                🏠 Dashboard
+                🏠 {{ __('messages.dashboard') }}
             </a>
 
             <a href="#cases" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
-                📁 My Cases
+                📁 {{ __('messages.my_cases') }}
             </a>
 
             <a href="/client/appointments" class="block px-5 py-3 rounded-xl hover:bg-green-50 text-green-700 font-bold">
-                📅 Book Appointment
+                📅 {{ __('messages.appointments') }}
             </a>
 
             <a href="/client/means-test" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
-                ✅ Means Test
+                ✅ {{ __('messages.means_test') }}
             </a>
 
             <a href="/client/evidence" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
-                📄 Evidence
+                📄 {{ __('messages.evidence') }}
             </a>
 
             <a href="#notifications" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
-                ✉️ Notifications
+                ✉️ {{ __('messages.notifications') }}
             </a>
 
             <a href="/forum" class="block px-5 py-3 rounded-xl hover:bg-gray-100">
-                💬 Legal Forum
+                💬 {{ __('messages.legal_forum') }}
             </a>
 
             <a href="/client/sos" class="block px-5 py-3 rounded-xl hover:bg-red-50 text-red-600 font-bold">
-                ⚠️ Emergency SOS
+                ⚠️ {{ __('messages.emergency_sos') }}
             </a>
             
             <a href="/logout" class="block mt-6 bg-red-600 text-white text-center py-3 rounded-xl font-bold hover:bg-red-700">
-                Logout
+                {{ __('messages.logout') }}
             </a>
         </nav>
 
         <div class="mt-10 bg-[#002147] text-white rounded-xl p-5">
-            <h3 class="font-bold mb-2">Need Help?</h3>
+            <h3 class="font-bold mb-2">{{ __('messages.need_help') ?? 'Need Help?' }}</h3>
             <p class="text-sm text-gray-300 mb-4">
-                Our support team is available to assist you.
+                {{ __('messages.support_text') ?? 'Our support team is available to assist you.' }}
             </p>
             <a href="#" class="block bg-yellow-400 text-[#002147] text-center py-2 rounded font-bold">
-                Contact Support
+                {{ __('messages.contact_support') ?? 'Contact Support' }}
             </a>
         </div>
     </aside>
@@ -73,11 +73,13 @@
         <!-- Top Bar -->
         <header class="h-20 bg-[#002147] text-white flex justify-between items-center px-8 shadow">
             <nav class="hidden md:flex gap-8 text-sm font-semibold">
-                <a href="/client" class="text-yellow-300 border-b-2 border-yellow-300 pb-2">Overview</a>
-                <a href="#cases" class="hover:text-yellow-300">My Cases</a>
-                <a href="/client/evidence" class="hover:text-yellow-300">Evidence</a>
-                <a href="/forum" class="hover:text-yellow-300">Legal Forum</a>
-                <a href="#notifications" class="hover:text-yellow-300">Notifications</a>
+                <a href="/client" class="text-yellow-300 border-b-2 border-yellow-300 pb-2">
+                    {{ __('messages.overview') }}
+                </a>
+                <a href="#cases" class="hover:text-yellow-300">{{ __('messages.my_cases') }}</a>
+                <a href="/client/evidence" class="hover:text-yellow-300">{{ __('messages.evidence') }}</a>
+                <a href="/forum" class="hover:text-yellow-300">{{ __('messages.legal_forum') }}</a>
+                <a href="#notifications" class="hover:text-yellow-300">{{ __('messages.notifications') }}</a>
             </nav>
 
             <div class="flex items-center gap-5">
@@ -91,13 +93,23 @@
                     @endif
                 </div>
 
+                <div class="flex gap-2">
+                    <a href="/language/en" class="bg-white text-[#002147] px-3 py-1 rounded font-bold text-sm">
+                        EN
+                    </a>
+
+                    <a href="/language/bn" class="bg-yellow-400 text-[#002147] px-3 py-1 rounded font-bold text-sm">
+                        বাংলা
+                    </a>
+                </div>
+
                 <div class="w-10 h-10 bg-white text-[#002147] rounded-full flex items-center justify-center font-bold">
                     {{ strtoupper(substr($user->name ?? 'C', 0, 1)) }}
                 </div>
 
                 <div>
                     <p class="font-bold">{{ $user->name ?? 'Client' }}</p>
-                    <p class="text-xs text-gray-300">Client</p>
+                    <p class="text-xs text-gray-300">{{ __('messages.client') ?? 'Client' }}</p>
                 </div>
             </div>
         </header>
@@ -107,10 +119,10 @@
             <!-- Hero -->
             <section class="bg-[#002147] rounded-2xl p-10 text-white mb-8 shadow-lg relative overflow-hidden">
                 <div class="relative z-10">
-                    <p class="text-xl mb-2">Welcome back,</p>
+                    <p class="text-xl mb-2">{{ __('messages.welcome_back') }},</p>
                     <h1 class="text-5xl font-bold mb-4">{{ $user->name ?? 'Client' }}</h1>
                     <p class="text-gray-200">
-                        Here's what's happening with your legal aid cases today.
+                        {{ __('messages.client_dashboard_subtitle') ?? "Here's what's happening with your legal aid cases today." }}
                     </p>
                 </div>
 
@@ -123,8 +135,10 @@
             <section class="bg-white rounded-2xl shadow p-6 mb-8 border border-green-100">
                 <div class="flex justify-between items-start mb-5">
                     <div>
-                        <h2 class="text-2xl font-bold text-[#002147]">Grant Support</h2>
-                        <p class="text-gray-500">Legal aid funding approved for your cases</p>
+                        <h2 class="text-2xl font-bold text-[#002147]">{{ __('messages.grant_support') }}</h2>
+                        <p class="text-gray-500">
+                            {{ __('messages.grant_support_subtitle') ?? 'Legal aid funding approved for your cases' }}
+                        </p>
                     </div>
 
                     <div class="bg-green-100 text-green-700 px-4 py-2 rounded-xl font-bold">
@@ -139,18 +153,18 @@
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <h3 class="font-bold text-[#002147]">
-                                            Case #LX-{{ $grant->case_number }}
+                                            {{ __('messages.case') ?? 'Case' }} #LX-{{ $grant->case_number }}
                                         </h3>
                                         <p class="text-sm text-gray-600">
                                             {{ $grant->case_title }}
                                         </p>
                                         <p class="text-xs text-gray-500 mt-1">
-                                            Fund: {{ $grant->source_name }}
+                                            {{ __('messages.fund') ?? 'Fund' }}: {{ $grant->source_name }}
                                         </p>
 
                                         @if($grant->note)
                                             <p class="text-xs text-gray-500 mt-2">
-                                                Note: {{ $grant->note }}
+                                                {{ __('messages.note') ?? 'Note' }}: {{ $grant->note }}
                                             </p>
                                         @endif
                                     </div>
@@ -169,7 +183,7 @@
                     </div>
                 @else
                     <div class="bg-gray-50 rounded-xl p-5 text-gray-600">
-                        No grant support has been allocated yet. If you pass the means test, admin may allocate funding support to your case.
+                        {{ __('messages.no_grant_support') ?? 'No grant support has been allocated yet. If you pass the means test, admin may allocate funding support to your case.' }}
                     </div>
                 @endif
             </section>
@@ -180,7 +194,7 @@
                 <!-- Notifications -->
                 <section id="notifications" class="bg-white rounded-2xl shadow p-6">
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-2xl font-bold">Notifications</h2>
+                        <h2 class="text-2xl font-bold">{{ __('messages.notifications') }}</h2>
                     </div>
 
                     @if(isset($notifications) && $notifications->count() > 0)
@@ -200,24 +214,24 @@
                             @endforeach
                         </div>
                     @else
-                        <p class="text-gray-500">No notifications yet.</p>
+                        <p class="text-gray-500">{{ __('messages.no_notifications') ?? 'No notifications yet.' }}</p>
                     @endif
                 </section>
 
                 <!-- Case Summary -->
                 <section class="bg-white rounded-2xl shadow p-6">
-                    <h2 class="text-2xl font-bold mb-6">Case Summary</h2>
+                    <h2 class="text-2xl font-bold mb-6">{{ __('messages.case_summary') }}</h2>
 
                     <div class="grid grid-cols-2 gap-5">
                         <div class="bg-blue-50 p-5 rounded-xl">
                             <div class="text-2xl mb-3">📁</div>
-                            <p class="text-sm text-blue-700">Total Cases</p>
+                            <p class="text-sm text-blue-700">{{ __('messages.total_cases') }}</p>
                             <h3 class="text-3xl font-bold">{{ $yourCases->count() ?? 0 }}</h3>
                         </div>
 
                         <div class="bg-green-50 p-5 rounded-xl">
                             <div class="text-2xl mb-3">📈</div>
-                            <p class="text-sm text-green-700">In Progress</p>
+                            <p class="text-sm text-green-700">{{ __('messages.in_progress') }}</p>
                             <h3 class="text-3xl font-bold">
                                 {{ $yourCases->where('status', 'in_progress')->count() }}
                             </h3>
@@ -225,7 +239,7 @@
 
                         <div class="bg-yellow-50 p-5 rounded-xl">
                             <div class="text-2xl mb-3">⏳</div>
-                            <p class="text-sm text-yellow-700">Pending/Open</p>
+                            <p class="text-sm text-yellow-700">{{ __('messages.pending') }}</p>
                             <h3 class="text-3xl font-bold">
                                 {{ $yourCases->where('status', 'open')->count() }}
                             </h3>
@@ -233,7 +247,7 @@
 
                         <div class="bg-red-50 p-5 rounded-xl">
                             <div class="text-2xl mb-3">✅</div>
-                            <p class="text-sm text-red-700">Closed</p>
+                            <p class="text-sm text-red-700">{{ __('messages.closed') }}</p>
                             <h3 class="text-3xl font-bold">
                                 {{ $yourCases->where('status', 'closed')->count() }}
                             </h3>
@@ -246,12 +260,12 @@
             <section id="cases" class="bg-white rounded-2xl shadow p-6 mb-8">
                 <div class="flex justify-between items-center mb-6">
                     <div>
-                        <h2 class="text-2xl font-bold">My Cases</h2>
-                        <p class="text-gray-500">Your submitted legal aid cases</p>
+                        <h2 class="text-2xl font-bold">{{ __('messages.my_cases') }}</h2>
+                        <p class="text-gray-500">{{ __('messages.my_cases_subtitle') ?? 'Your submitted legal aid cases' }}</p>
                     </div>
 
                     <a href="/case/create" class="bg-[#002147] text-white px-4 py-2 rounded-lg font-bold">
-                        Submit New Case
+                        {{ __('messages.submit_new_case') }}
                     </a>
                 </div>
 
@@ -260,12 +274,12 @@
                         <table class="w-full border-collapse">
                             <thead>
                                 <tr class="bg-gray-100 text-left text-sm">
-                                    <th class="p-4">Case Title</th>
-                                    <th class="p-4">Case Type</th>
-                                    <th class="p-4">Status</th>
-                                    <th class="p-4">Priority</th>
-                                    <th class="p-4">Deadline</th>
-                                    <th class="p-4">Chat</th>
+                                    <th class="p-4">{{ __('messages.case_title') ?? 'Case Title' }}</th>
+                                    <th class="p-4">{{ __('messages.case_type') ?? 'Case Type' }}</th>
+                                    <th class="p-4">{{ __('messages.status') ?? 'Status' }}</th>
+                                    <th class="p-4">{{ __('messages.priority') ?? 'Priority' }}</th>
+                                    <th class="p-4">{{ __('messages.deadline') ?? 'Deadline' }}</th>
+                                    <th class="p-4">{{ __('messages.chat') ?? 'Chat' }}</th>
                                 </tr>
                             </thead>
 
@@ -290,11 +304,11 @@
                                         <td class="p-4">
                                             @if($case->lawyer_id)
                                                 <a href="/chat/{{ $case->id }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700 text-sm">
-                                                    Chat with Lawyer
+                                                    {{ __('messages.chat_with_lawyer') ?? 'Chat with Lawyer' }}
                                                 </a>
                                             @else
                                                 <span class="text-sm text-gray-400">
-                                                    Available after assignment
+                                                    {{ __('messages.available_after_assignment') ?? 'Available after assignment' }}
                                                 </span>
                                             @endif
                                         </td>
@@ -304,7 +318,7 @@
                         </table>
                     </div>
                 @else
-                    <p class="text-gray-500">No cases submitted yet.</p>
+                    <p class="text-gray-500">{{ __('messages.no_cases') ?? 'No cases submitted yet.' }}</p>
                 @endif
             </section>
 
@@ -315,35 +329,35 @@
                 <section class="bg-white rounded-2xl shadow p-6">
                     <div class="flex justify-between items-center mb-5">
                         <div>
-                            <h2 class="text-2xl font-bold">Appointments</h2>
-                            <p class="text-gray-500">Book and track lawyer meetings</p>
+                            <h2 class="text-2xl font-bold">{{ __('messages.appointments') }}</h2>
+                            <p class="text-gray-500">{{ __('messages.appointments_subtitle') ?? 'Book and track lawyer meetings' }}</p>
                         </div>
 
                         <a href="/client/appointments" class="text-blue-700 font-bold">
-                            Open
+                            {{ __('messages.open') ?? 'Open' }}
                         </a>
                     </div>
 
                     <div class="space-y-4">
                         <div class="flex justify-between items-center border-b pb-3">
                             <div>
-                                <h3 class="font-bold">Request Appointment</h3>
-                                <p class="text-sm text-gray-500">Choose lawyer, date, time and reason</p>
+                                <h3 class="font-bold">{{ __('messages.request_appointment') ?? 'Request Appointment' }}</h3>
+                                <p class="text-sm text-gray-500">{{ __('messages.request_appointment_text') ?? 'Choose lawyer, date, time and reason' }}</p>
                             </div>
 
                             <a href="/client/appointments" class="bg-green-100 text-green-700 px-4 py-2 rounded-lg font-bold">
-                                Book Now
+                                {{ __('messages.book_now') ?? 'Book Now' }}
                             </a>
                         </div>
 
                         <div class="flex justify-between items-center border-b pb-3">
                             <div>
-                                <h3 class="font-bold">Approval Tracking</h3>
-                                <p class="text-sm text-gray-500">See pending, approved or rejected appointments</p>
+                                <h3 class="font-bold">{{ __('messages.approval_tracking') ?? 'Approval Tracking' }}</h3>
+                                <p class="text-sm text-gray-500">{{ __('messages.approval_tracking_text') ?? 'See pending, approved or rejected appointments' }}</p>
                             </div>
 
                             <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded text-sm">
-                                Active
+                                {{ __('messages.active') ?? 'Active' }}
                             </span>
                         </div>
                     </div>
@@ -351,7 +365,7 @@
 
                 <!-- Recent Activity -->
                 <section class="bg-white rounded-2xl shadow p-6">
-                    <h2 class="text-2xl font-bold mb-5">Recent Activity</h2>
+                    <h2 class="text-2xl font-bold mb-5">{{ __('messages.recent_activity') }}</h2>
 
                     <div class="space-y-5">
                         @if(isset($yourCases) && $yourCases->count() > 0)
@@ -360,15 +374,17 @@
                                     <div class="w-3 h-3 bg-blue-600 rounded-full mt-2"></div>
                                     <div>
                                         <p class="text-sm">
-                                            Your case <strong>{{ $case->title }}</strong> is currently
+                                            {{ __('messages.your_case') ?? 'Your case' }}
+                                            <strong>{{ $case->title }}</strong>
+                                            {{ __('messages.is_currently') ?? 'is currently' }}
                                             <strong>{{ ucfirst(str_replace('_', ' ', $case->status)) }}</strong>.
                                         </p>
-                                        <p class="text-xs text-gray-400">Recently updated</p>
+                                        <p class="text-xs text-gray-400">{{ __('messages.recently_updated') ?? 'Recently updated' }}</p>
                                     </div>
                                 </div>
                             @endforeach
                         @else
-                            <p class="text-gray-500">No recent activity.</p>
+                            <p class="text-gray-500">{{ __('messages.no_recent_activity') ?? 'No recent activity.' }}</p>
                         @endif
                     </div>
                 </section>
@@ -376,27 +392,27 @@
 
             <!-- Quick Actions -->
             <section class="bg-white rounded-2xl shadow p-6">
-                <h2 class="text-2xl font-bold mb-5">Quick Actions</h2>
+                <h2 class="text-2xl font-bold mb-5">{{ __('messages.quick_actions') }}</h2>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                     <a href="/case/create" class="bg-blue-50 p-5 rounded-xl text-center font-bold hover:bg-blue-100">
-                        📄<br>Submit New Case
+                        📄<br>{{ __('messages.submit_new_case') }}
                     </a>
 
                     <a href="/client/appointments" class="bg-green-50 p-5 rounded-xl text-center font-bold hover:bg-green-100">
-                        📅<br>Book Appointment
+                        📅<br>{{ __('messages.appointments') }}
                     </a>
 
                     <a href="/client/evidence" class="bg-purple-50 p-5 rounded-xl text-center font-bold hover:bg-purple-100">
-                        ☁️<br>Upload Evidence
+                        ☁️<br>{{ __('messages.upload_evidence') ?? 'Upload Evidence' }}
                     </a>
 
                     <a href="/client/payments" class="bg-pink-50 p-5 rounded-xl text-center font-bold hover:bg-pink-100">
-                        💳<br>Payments
+                        💳<br>{{ __('messages.payments') ?? 'Payments' }}
                     </a>
 
                     <a href="/client/sos" class="bg-red-50 p-5 rounded-xl text-center font-bold text-red-600 hover:bg-red-100">
-                        🚨<br>Emergency SOS
+                        🚨<br>{{ __('messages.emergency_sos') }}
                     </a>
                 </div>
             </section>
@@ -405,8 +421,8 @@
 
         <!-- Footer -->
         <footer class="bg-[#002147] text-white px-8 py-5 flex justify-between text-sm">
-            <p>© 2025 LexAid. All rights reserved.</p>
-            <p>Privacy Policy | Terms & Conditions</p>
+            <p>© 2025 LexAid. {{ __('messages.all_rights_reserved') ?? 'All rights reserved.' }}</p>
+            <p>{{ __('messages.privacy_policy') ?? 'Privacy Policy' }} | {{ __('messages.terms_conditions') ?? 'Terms & Conditions' }}</p>
         </footer>
 
     </main>

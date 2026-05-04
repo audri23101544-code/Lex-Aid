@@ -14,7 +14,7 @@ use App\Http\Controllers\CasePaymentController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AdminLawyerChatController;
 use App\Http\Controllers\MeansTestController;
-
+use Illuminate\Support\Facades\Session;
 
 
 Route::get('/', function () {
@@ -107,3 +107,12 @@ Route::get('/lawyer/admin-chat', [AdminLawyerChatController::class, 'lawyerChat'
 Route::get('/client/means-test', [MeansTestController::class, 'create']);
 Route::post('/client/means-test', [MeansTestController::class, 'store']);
 Route::get('/admin/means-tests', [MeansTestController::class, 'adminIndex']);
+
+
+Route::get('/language/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'bn'])) {
+        Session::put('locale', $locale);
+    }
+
+    return back();
+});

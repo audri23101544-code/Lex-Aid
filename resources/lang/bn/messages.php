@@ -1,0 +1,85 @@
+<?php
+
+return [
+    'dashboard' => 'ড্যাশবোর্ড',
+    'admin_dashboard' => 'অ্যাডমিন ড্যাশবোর্ড',
+    'client_dashboard' => 'ক্লায়েন্ট ড্যাশবোর্ড',
+    'lawyer_dashboard' => 'আইনজীবী ড্যাশবোর্ড',
+
+    'welcome_back' => 'স্বাগতম',
+    'overview' => 'ওভারভিউ',
+    'my_cases' => 'আমার কেসসমূহ',
+    'appointments' => 'অ্যাপয়েন্টমেন্ট',
+    'evidence' => 'প্রমাণ',
+    'legal_forum' => 'আইনি ফোরাম',
+    'notifications' => 'নোটিফিকেশন',
+    'logout' => 'লগআউট',
+
+    'submit_new_case' => 'নতুন কেস জমা দিন',
+    'emergency_sos' => 'জরুরি SOS',
+    'means_test' => 'আর্থিক যোগ্যতা পরীক্ষা',
+    'grant_support' => 'অনুদান সহায়তা',
+    'case_summary' => 'কেস সারাংশ',
+    'total_cases' => 'মোট কেস',
+    'in_progress' => 'চলমান',
+    'pending' => 'অপেক্ষমান',
+    'closed' => 'সমাপ্ত',
+    'recent_activity' => 'সাম্প্রতিক কার্যক্রম',
+    'quick_actions' => 'দ্রুত কাজ',
+
+    'performance_dashboard' => 'পারফরম্যান্স ড্যাশবোর্ড',
+    'grant_funding' => 'অনুদান ও তহবিল',
+    'bulk_notifications' => 'বাল্ক নোটিফিকেশন',
+    'case_priority' => 'কেসের অগ্রাধিকার',
+    'means_test_review' => 'যোগ্যতা পরীক্ষার পর্যালোচনা',
+
+    'language' => 'ভাষা',
+    'english' => 'ইংরেজি',
+    'bangla' => 'বাংলা',
+    'client' => 'ক্লায়েন্ট',
+    'need_help' => 'সাহায্য দরকার?',
+    'support_text' => 'আমাদের সাপোর্ট টিম আপনাকে সাহায্য করতে প্রস্তুত।',
+    'contact_support' => 'সাপোর্টে যোগাযোগ করুন',
+    'client_dashboard_subtitle' => 'আজ আপনার আইনি সহায়তার কেসগুলোর অবস্থা এখানে দেখুন।',
+    'grant_support_subtitle' => 'আপনার কেসের  জন্য অনুমোদিত আইনি সহায়তা তহবিল',
+    'case' => 'কেস',
+    'fund' => 'তহবিল',
+    'note' => 'নোট',
+    'no_grant_support' => 'এখনও কোনো অনুদান সহায়তা বরাদ্দ করা হয়নি। আপনি আর্থিক যোগ্যতা পরীক্ষায় উত্তীর্ণ হলে অ্যাডমিন আপনার কেসের জন্য তহবিল বরাদ্দ করতে পারেন।',
+    'no_notifications' => 'এখনও কোনো নোটিফিকেশন নেই।',
+    'my_cases_subtitle' => 'আপনার জমা দেওয়া আইনি সহায়তার কেসগুলো',
+    'case_title' => 'কেস শিরোনাম',
+    'case_type' => 'কেসের ধরন',
+    'status' => 'স্ট্যাটাস',
+    'priority' => 'অগ্রাধিকার',
+    'deadline' => 'শেষ তারিখ',
+    'chat' => 'চ্যাট',
+    'chat_with_lawyer' => 'আইনজীবীর সাথে চ্যাট',
+    'available_after_assignment' => 'আইনজীবী নিয়োগের পর পাওয়া যাবে',
+    'no_cases' => 'এখনও কোনো কেস জমা দেওয়া হয়নি।',
+    'appointments_subtitle' => 'আইনজীবীর সাথে মিটিং বুক ও ট্র্যাক করুন',
+    'open' => 'খুলুন',
+    'request_appointment' => 'অ্যাপয়েন্টমেন্টের অনুরোধ',
+    'request_appointment_text' => 'আইনজীবী, তারিখ, সময় ও কারণ নির্বাচন করুন',
+    'book_now' => 'এখন বুক করুন',
+    'approval_tracking' => 'অনুমোদন ট্র্যাকিং',
+    'approval_tracking_text' => 'অপেক্ষমান, অনুমোদিত বা বাতিল অ্যাপয়েন্টমেন্ট দেখুন',
+    'active' => 'সক্রিয়',
+    'your_case' => 'আপনার কেস',
+    'is_currently' => 'বর্তমানে',
+    'recently_updated' => 'সাম্প্রতিক আপডেট',
+    'no_recent_activity' => 'সাম্প্রতিক কোনো কার্যক্রম নেই।',
+    'upload_evidence' => 'প্রমাণ আপলোড',
+    'payments' => 'পেমেন্ট',
+    'all_rights_reserved' => 'সর্বস্বত্ব সংরক্ষিত।',
+    'privacy_policy' => 'প্রাইভেসি পলিসি',
+    'terms_conditions' => 'শর্তাবলী',
+
+
+
+
+
+
+
+
+];
