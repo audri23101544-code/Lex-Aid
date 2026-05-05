@@ -2,9 +2,9 @@
 
 return [
     'dashboard' => 'ড্যাশবোর্ড',
-    'admin_dashboard' => 'অ্যাডমিন ড্যাশবোর্ড',
+    
     'client_dashboard' => 'ক্লায়েন্ট ড্যাশবোর্ড',
-    'lawyer_dashboard' => 'আইনজীবী ড্যাশবোর্ড',
+    
 
     'welcome_back' => 'স্বাগতম',
     'overview' => 'ওভারভিউ',
@@ -29,7 +29,7 @@ return [
 
     'performance_dashboard' => 'পারফরম্যান্স ড্যাশবোর্ড',
     'grant_funding' => 'অনুদান ও তহবিল',
-    'bulk_notifications' => 'বাল্ক নোটিফিকেশন',
+    
     'case_priority' => 'কেসের অগ্রাধিকার',
     'means_test_review' => 'যোগ্যতা পরীক্ষার পর্যালোচনা',
 

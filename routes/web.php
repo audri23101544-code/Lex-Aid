@@ -108,7 +108,7 @@ Route::get('/client/means-test', [MeansTestController::class, 'create']);
 Route::post('/client/means-test', [MeansTestController::class, 'store']);
 Route::get('/admin/means-tests', [MeansTestController::class, 'adminIndex']);
 
-
+Route::post('/admin/means-tests/allocate-funding', [FundingController::class, 'allocateFromMeansTest']);
 Route::get('/language/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'bn'])) {
         Session::put('locale', $locale);

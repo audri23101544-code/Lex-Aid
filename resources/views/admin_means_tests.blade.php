@@ -150,7 +150,7 @@
                                     <td class="p-4 text-sm text-gray-500">{{ $test->created_at }}</td>
                                     <td class="p-4">
                                     @if($test->result == 'eligible' || $test->result == 'partially_eligible')
-                                        <form method="POST" action="/admin/means-tests/allocate-funding" class="space-y-2">
+                                        <form method="POST" action="/admin/means-tests/allocate-funding" class="space-y-3">
                                             @csrf
 
                                             <select name="funding_source_id" required class="w-full border p-2 rounded text-sm">
