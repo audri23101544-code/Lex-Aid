@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Case Detail View | LexAid Digital Magistrate</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#aec7f6",
+              "background": "#f8f9fa",
+              "tertiary": "#000a1e",
+              "on-tertiary-container": "#708ab5",
+              "on-primary-fixed": "#001b3d",
+              "on-tertiary-fixed-variant": "#2d476f",
+              "on-surface": "#191c1d",
+              "outline": "#74777f",
+              "on-tertiary-fixed": "#001b3c",
+              "surface-tint": "#465f88",
+              "secondary-fixed-dim": "#eac243",
+              "surface-container-low": "#f3f4f5",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "surface-container": "#edeeef",
+              "on-secondary-container": "#725a00",
+              "tertiary-container": "#002147",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-fixed": "#d6e3ff",
+              "outline-variant": "#c4c6cf",
+              "on-secondary-fixed": "#241a00",
+              "on-error": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface": "#f8f9fa",
+              "secondary-fixed": "#ffe089",
+              "secondary": "#745b00",
+              "tertiary-fixed-dim": "#adc7f7",
+              "surface-variant": "#e1e3e4",
+              "primary-fixed-dim": "#aec7f6",
+              "on-primary-fixed-variant": "#2d476f",
+              "on-primary-container": "#708ab5",
+              "surface-bright": "#f8f9fa",
+              "secondary-container": "#fcd353",
+              "on-background": "#191c1d",
+              "primary-container": "#002147",
+              "error": "#ba1a1a",
+              "surface-dim": "#d9dadb",
+              "inverse-surface": "#2e3132",
+              "surface-container-highest": "#e1e3e4",
+              "primary": "#000a1e",
+              "primary-fixed": "#d6e3ff",
+              "surface-container-lowest": "#ffffff",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#e7e8e9",
+              "on-surface-variant": "#44474e",
+              "on-secondary-fixed-variant": "#574500"
+            },
+            fontFamily: {
+              "headline": ["Newsreader"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #00214733;
+        border-radius: 10px;
+      }
+    </style>
+</head>
+<body class="bg-background text-primary font-body antialiased">
+<!-- SideNavBar (As per Shared Components JSON) -->
+<aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-[#002147] dark:bg-slate-950 flex flex-col border-r border-white/5 shadow-2xl z-50">
+<div class="p-8">
+<h1 class="text-2xl font-serif italic text-white">LexAid</h1>
+<p class="text-xs text-[#FCD353] font-label tracking-widest mt-1 opacity-80">DIGITAL MAGISTRATE</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-300 hover:text-white transition-all hover:bg-white/5 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label">Dashboard</span>
+</a>
+<!-- Case Files is active -->
+<a class="flex items-center space-x-3 px-4 py-3 text-[#FCD353] bg-white/10 rounded-lg mx-2 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label">Case Files</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-300 hover:text-white transition-all hover:bg-white/5 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label">Documents</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-300 hover:text-white transition-all hover:bg-white/5 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label">Calendar</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-300 hover:text-white transition-all hover:bg-white/5 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label">Messages</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-300 hover:text-white transition-all hover:bg-white/5 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4 space-y-4">
+<button class="w-full bg-secondary-container text-on-secondary-container py-3 rounded-xl font-label font-bold flex items-center justify-center space-x-2 shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>New Case</span>
+</button>
+<div class="pt-4 border-t border-white/10 space-y-1">
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-label text-sm">Support</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label text-sm">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- TopAppBar (As per Shared Components JSON) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-white/85 backdrop-blur-md flex items-center justify-between px-8 border-b border-slate-100 shadow-sm">
+<div class="flex items-center space-x-8">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-lg" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-1.5 text-sm w-80 focus:ring-1 focus:ring-primary placeholder:text-outline-variant transition-all" placeholder="Search Case ID, File, or Lawyer..." type="text"/>
+</div>
+<nav class="hidden md:flex space-x-6">
+<a class="text-slate-500 hover:text-[#002147] font-label text-sm transition-colors" href="#">My Tasks</a>
+<a class="text-[#002147] font-semibold border-b-2 border-[#745B00] font-label text-sm py-5" href="#">Recent Cases</a>
+</nav>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors" data-icon="account_balance">account_balance</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors" data-icon="dark_mode">dark_mode</span>
+</div>
+<div class="h-8 w-px bg-slate-200"></div>
+<div class="flex items-center space-x-3 cursor-pointer group">
+<img class="w-9 h-9 rounded-full object-cover ring-2 ring-transparent group-hover:ring-secondary-container transition-all" data-alt="portrait of a professional male lawyer in a dark suit against a neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU4QvNI-R_tubBm8Tccwy4Exwbw6lbmGOC9TPlAYEqkuGF3ZfrRKylwS8I6ibkL4jVig7naffT5tGqs6HJPFuoVWPjm5mQG1OvnfmJhB5GE6N5KjhB7R3g8YJs-mVGH8ue-So9slslyGqk4ddS4T6bE3nQiQOkHrTcJNg6YR3FsGp3TbBgSdVBaH3wz9uukcMWfImj7iNWNfLf1mW1aJwfvhvoZv-YfI1J6VMk_-vVQ7Xn3RsM4cAsEF1t4aAvHO1u-xNTgSbRCfZJ"/>
+<span class="font-label text-sm font-semibold text-primary">Julian Thorne, JD</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 pt-24 pb-12 px-8 min-h-screen">
+<!-- Case Header & Quick Stats -->
+<section class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div>
+<nav class="flex items-center space-x-2 text-xs font-label text-outline mb-3 uppercase tracking-widest">
+<span>Active Cases</span>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<span>Corporate Litigation</span>
+</nav>
+<h2 class="font-headline text-4xl text-primary font-bold">Thorne v. Aeris Global Holdings</h2>
+<div class="flex items-center mt-3 space-x-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">Case ID: LX-2024-0892</span>
+<span class="flex items-center text-outline text-sm">
+<span class="material-symbols-outlined text-sm mr-1" data-icon="event">event</span>
+                        Filed: Oct 12, 2023
+                    </span>
+<span class="flex items-center text-on-secondary-fixed-variant bg-secondary-fixed/30 px-2 py-0.5 rounded text-xs font-semibold">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full mr-2"></span>
+                        Status: Discovery Phase
+                    </span>
+</div>
+</div>
+<div class="flex space-x-3">
+<button class="bg-primary text-white px-6 py-2.5 rounded-xl font-label text-sm font-bold shadow-xl hover:opacity-90 active:scale-95 transition-all flex items-center">
+<span class="material-symbols-outlined mr-2" data-icon="edit_note">edit_note</span>
+                    Internal Note
+                </button>
+<button class="bg-surface-container-highest text-primary px-6 py-2.5 rounded-xl font-label text-sm font-bold border border-outline-variant hover:bg-surface-variant transition-all flex items-center">
+<span class="material-symbols-outlined mr-2" data-icon="ios_share">ios_share</span>
+                    Share View
+                </button>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Left Column: Summary & Evidence -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<!-- Means Test Result Summary (Bento Large) -->
+<div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-100 flex flex-col md:flex-row">
+<div class="bg-primary-container p-8 md:w-1/3 flex flex-col justify-center items-center text-center relative overflow-hidden">
+<!-- Decorative Abstract Background -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="abstract geometric pattern with repeating triangles and clean lines in monochrome" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYu4uDLP3-lD2KmVG4mu49hCS_lyLgWeXUkoawIkao5w5Pq_K5pwIxfN3U5cHgKeRdlcRD_juAwgE34rVVUO8iwa0ARqPAwuiJkyPi1WSwm_Enc1tvVdlE9QEWgiYZFicJnN9Jhq9JW5P9WxsdwxFHC4dVVabpwGgvgbtjatjKxuVJb_K5TpMKSro3Cz9lLv850wZmL4HfTon-oWnciw43JFyWwyk60PdC5JHtxQKb_Y1JhbOHcovy9eD3aKKXZkp6ZTN_KmsD93i0"/>
+</div>
+<span class="text-[#FCD353] font-label text-xs uppercase tracking-widest mb-2 z-10">Eligibility Analysis</span>
+<div class="w-20 h-20 rounded-full border-4 border-[#FCD353] flex items-center justify-center mb-4 z-10">
+<span class="text-white font-headline text-3xl font-bold">88%</span>
+</div>
+<h4 class="text-white font-serif italic text-xl z-10">Means Test Passed</h4>
+<p class="text-slate-300 text-xs mt-2 z-10 leading-relaxed">Financial criteria met for Tier 1 Litigation Support</p>
+</div>
+<div class="p-8 flex-1 bg-surface-container-lowest grid grid-cols-2 gap-6">
+<div>
+<p class="text-xs font-label text-outline uppercase mb-1">Adjusted Net Income</p>
+<p class="text-xl font-headline text-primary font-bold">$142,500 <span class="text-xs font-body font-normal text-outline">/ yr</span></p>
+</div>
+<div>
+<p class="text-xs font-label text-outline uppercase mb-1">Disposable Assets</p>
+<p class="text-xl font-headline text-primary font-bold">$12,800</p>
+</div>
+<div class="col-span-2 pt-4 border-t border-slate-100">
+<p class="text-sm font-body text-on-surface-variant leading-relaxed italic">
+                                "The client’s financial footprint allows for LexAid Silver-Level magistrate intervention. All filing fees are currently subsidized under Section 4(c)."
+                            </p>
+</div>
+</div>
+</div>
+<!-- Evidence Repository (Bento Medium) -->
+<div class="bg-surface-container-low rounded-xl p-8 border border-white">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="font-headline text-2xl text-primary font-bold">Evidence Repository</h3>
+<p class="text-sm text-outline font-body">14 Verified documents &amp; physical media</p>
+</div>
+<button class="text-primary font-label text-sm flex items-center hover:underline decoration-secondary transition-all">
+<span class="material-symbols-outlined text-lg mr-1" data-icon="cloud_upload">cloud_upload</span>
+                            Batch Upload
+                        </button>
+</div>
+<div class="space-y-3">
+<!-- Evidence Item 1 -->
+<div class="bg-white p-4 rounded-lg flex items-center justify-between shadow-sm border border-slate-50 hover:shadow-md transition-shadow cursor-pointer group">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-error-container/20 rounded flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<h5 class="text-sm font-semibold text-primary group-hover:text-secondary transition-colors">Employment_Contract_Final.pdf</h5>
+<p class="text-xs text-outline">Uploaded Oct 14 • 4.2 MB</p>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-label font-bold text-outline">CONTRACT</span>
+<span class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded text-[10px] font-label font-bold">VERIFIED</span>
+<span class="material-symbols-outlined text-outline-variant hover:text-primary" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+<!-- Evidence Item 2 -->
+<div class="bg-white p-4 rounded-lg flex items-center justify-between shadow-sm border border-slate-50 hover:shadow-md transition-shadow cursor-pointer group">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-secondary-container/20 rounded flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+</div>
+<div>
+<h5 class="text-sm font-semibold text-primary group-hover:text-secondary transition-colors">Site_Inspection_IMG_02.jpg</h5>
+<p class="text-xs text-outline">Uploaded Oct 16 • 12.8 MB</p>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-label font-bold text-outline">SITE_VISIT</span>
+<span class="px-2 py-0.5 bg-amber-50 text-amber-700 rounded text-[10px] font-label font-bold">PENDING</span>
+<span class="material-symbols-outlined text-outline-variant hover:text-primary" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+<!-- Evidence Item 3 -->
+<div class="bg-white p-4 rounded-lg flex items-center justify-between shadow-sm border border-slate-50 hover:shadow-md transition-shadow cursor-pointer group">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-on-tertiary-container/20 rounded flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div>
+<h5 class="text-sm font-semibold text-primary group-hover:text-secondary transition-colors">Affidavit_Witness_Lee.docx</h5>
+<p class="text-xs text-outline">Uploaded Nov 02 • 1.1 MB</p>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-label font-bold text-outline">WITNESS</span>
+<span class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded text-[10px] font-label font-bold">VERIFIED</span>
+<span class="material-symbols-outlined text-outline-variant hover:text-primary" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border-2 border-dashed border-outline-variant rounded-xl text-outline font-label text-sm hover:border-primary hover:text-primary transition-all">
+                        View All Repository Files
+                    </button>
+</div>
+<!-- Internal Notes (Permission Aware) -->
+<div class="bg-white rounded-xl p-8 shadow-sm border border-slate-100">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-secondary" data-icon="lock">lock</span>
+<h3 class="font-headline text-xl text-primary font-bold">Confidential Case Notes</h3>
+</div>
+<span class="text-[10px] font-label text-outline bg-surface-container px-2 py-1 rounded">PRIVILEGED ACCESS ONLY</span>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low border-none rounded-xl p-4 text-sm font-body focus:ring-1 focus:ring-primary min-h-[120px] placeholder:italic" placeholder="Add a new internal strategy note..."></textarea>
+<div class="absolute bottom-3 right-3 flex items-center space-x-3">
+<span class="material-symbols-outlined text-outline cursor-pointer text-lg" data-icon="attach_file">attach_file</span>
+<button class="bg-primary text-white p-2 rounded-lg shadow-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+<div class="mt-8 space-y-6">
+<div class="flex space-x-4">
+<div class="w-8 h-8 rounded-full bg-primary-container flex-shrink-0 flex items-center justify-center text-white text-[10px] font-bold">JT</div>
+<div>
+<div class="flex items-center space-x-2 mb-1">
+<span class="text-sm font-semibold text-primary">Julian Thorne</span>
+<span class="text-[10px] text-outline">• 2 days ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                                    The opposing counsel is likely to challenge the validity of the site inspection report. We need the original timestamps from the metadata of IMG_02. 
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Timeline & Stakeholders -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Client & Lawyer Info -->
+<div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+<h3 class="font-label text-xs uppercase tracking-widest text-outline mb-6">Stakeholders</h3>
+<div class="space-y-6">
+<div class="flex items-center space-x-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="close-up portrait of a professional woman with a serious expression and thoughtful eyes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGFL-asG9TRAUpaLRZd3zkviIvbY0GXZrQ2oWwRT4e4nVdWBLOSpk-lqnXCmX6xDcvlEKpFEi9eOmKELgDxjIrpHZX_TjSSu6jxD-Sl9F27sQw4NfNybTD9UY9Ld3BUvgtE-I-fqKhBfBkfD0QzDIzvKyBFMyKQUHiLY8KPI9lNXdUwGSXAJd26s07QUVS8FLj1CAvoTOCt6DGUh4yq7eveoSiqW26_iTjx8C1HPYx9y9L79WUCusV56fCv-RdWYREcd9HxWjtmPUh"/>
+<div>
+<p class="text-xs font-label text-outline">Petitioner / Client</p>
+<h4 class="font-bold text-primary">Elena Rodriguez</h4>
+<div class="flex space-x-2 mt-1">
+<span class="material-symbols-outlined text-sm text-outline cursor-pointer hover:text-primary" data-icon="mail">mail</span>
+<span class="material-symbols-outlined text-sm text-outline cursor-pointer hover:text-primary" data-icon="call">call</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="professional male lawyer portrait with slight smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf-rjH9ejM9F5XcWZ5jTB9q-UzAEE8xvthwDpheSrzL8eRlCoAYiv3btoVWSgLnGAVrqaE0lHxKIOXJVCAX33sPSd8yoRqj42-esZaBi-W6dhMBhn3YkO8EDLj8KnCC5Rr7d2rp_knN-VhRs4Xap5xsw1VJyynuD9ACX4H6rGsKSZJpzAWLoRS0LXQVVI15NLzb4EUFL6SSSuT7J0khZZM3LJGXKjp0gh0xprv66yaSMoZw6F2HDBmFAklvOcZ8-pNMjzaaCAan9tH"/>
+<div>
+<p class="text-xs font-label text-outline">Lead Counsel</p>
+<h4 class="font-bold text-primary">Julian Thorne, JD</h4>
+<div class="flex space-x-2 mt-1">
+<span class="material-symbols-outlined text-sm text-outline cursor-pointer hover:text-primary" data-icon="mail">mail</span>
+<span class="material-symbols-outlined text-sm text-outline cursor-pointer hover:text-primary" data-icon="video_call">video_call</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 bg-surface-container-low py-3 rounded-lg text-primary font-label text-sm font-semibold hover:bg-surface-container-high transition-colors">
+                        Manage Permissions
+                    </button>
+</div>
+<!-- Case Status Timeline (Audit Log) -->
+<div class="bg-surface-container-lowest rounded-xl p-8 border border-slate-100 shadow-sm">
+<h3 class="font-headline text-xl text-primary font-bold mb-8">Case Timeline</h3>
+<div class="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:bg-slate-100">
+<!-- Timeline Item: Today -->
+<div class="relative flex items-start space-x-4">
+<div class="relative z-10 w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-on-secondary-container text-lg" data-icon="history_edu">history_edu</span>
+</div>
+<div>
+<p class="text-[10px] font-label text-secondary font-bold uppercase tracking-widest">Today</p>
+<h5 class="text-sm font-semibold text-primary">Discovery Motion Filed</h5>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+                                    Document #44B (Request for Production) was served to the defense.
+                                </p>
+</div>
+</div>
+<!-- Timeline Item: Past -->
+<div class="relative flex items-start space-x-4">
+<div class="relative z-10 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-outline text-lg" data-icon="verified">verified</span>
+</div>
+<div>
+<p class="text-[10px] font-label text-outline font-bold uppercase tracking-widest">Oct 28</p>
+<h5 class="text-sm font-semibold text-primary">Evidence Verified</h5>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+                                    Magistrate AI completed validation of employment records.
+                                </p>
+</div>
+</div>
+<!-- Timeline Item: Past -->
+<div class="relative flex items-start space-x-4">
+<div class="relative z-10 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-outline text-lg" data-icon="assignment_ind">assignment_ind</span>
+</div>
+<div>
+<p class="text-[10px] font-label text-outline font-bold uppercase tracking-widest">Oct 12</p>
+<h5 class="text-sm font-semibold text-primary">Initial Filing</h5>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+                                    Case registered and case number LX-2024-0892 assigned.
+                                </p>
+</div>
+</div>
+</div>
+<button class="w-full mt-10 py-2 text-xs font-label text-outline hover:text-primary transition-colors flex items-center justify-center">
+                        View Full Audit Log
+                        <span class="material-symbols-outlined text-sm ml-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Public Updates Banner -->
+<div class="bg-primary-container p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-20 transform translate-x-4 -translate-y-4 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform">
+<span class="material-symbols-outlined text-6xl text-white" data-icon="public">public</span>
+</div>
+<h4 class="text-[#FCD353] font-headline text-lg font-bold">Public Transparency</h4>
+<p class="text-slate-300 text-xs mt-2 leading-relaxed">
+                        Last public update was 4 days ago. LexAid auto-generates redacted summaries for the public docket.
+                    </p>
+<button class="mt-4 px-4 py-2 bg-white/10 text-white rounded-lg text-xs font-label font-bold hover:bg-white/20 transition-all">
+                        Update Public Log
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Quick Action Button (FAB Contextual) -->
+<!-- Supressed on detail view as per mandate, but keeping logical structure available for future interactions if permitted by shell visibility rules -->
+</body></html>
