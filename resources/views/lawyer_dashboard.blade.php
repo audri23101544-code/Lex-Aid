@@ -129,9 +129,9 @@
                 <p class="text-green-600 text-sm mt-4">Resolved</p>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl shadow">
+            <div class="bg-white p-6 rounded-2xl shadow overflow-hidden">
                 <p class="text-gray-500">Total Earnings</p>
-                <h3 class="text-3xl font-bold mt-3 text-green-700">
+                <h3 class="text-2xl font-bold mt-3 text-green-700 break-words leading-tight">
                     ৳{{ number_format($totalEarnings ?? 0, 2) }}
                 </h3>
                 <p class="text-green-600 text-sm mt-4">Paid payments</p>
