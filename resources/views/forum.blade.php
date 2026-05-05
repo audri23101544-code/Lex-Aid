@@ -9,9 +9,18 @@
 
 <header class="bg-[#002147] text-white px-8 py-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold text-[#FCD353]">LexAid Legal Forum</h1>
+
     <nav class="flex gap-6">
-        <a href="/client" class="hover:text-[#FCD353]">Client Dashboard</a>
-        <a href="/lawyer" class="hover:text-[#FCD353]">Lawyer Dashboard</a>
+        @if(isset($user))
+            @if($user->role === 'client')
+                <a href="/client" class="hover:text-[#FCD353]">Client Dashboard</a>
+            @elseif($user->role === 'lawyer')
+                <a href="/lawyer" class="hover:text-[#FCD353]">Lawyer Dashboard</a>
+            @elseif($user->role === 'admin')
+                <a href="/admin" class="hover:text-[#FCD353]">Admin Dashboard</a>
+            @endif
+        @endif
+
         <a href="/forum" class="text-[#FCD353] font-bold">Forum</a>
         <a href="/logout" class="hover:text-[#FCD353]">Logout</a>
     </nav>
